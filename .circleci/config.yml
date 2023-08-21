@@ -1,0 +1,182 @@
+
+version: "2.1"
+
+parameters:
+  dockerize_me:
+    type: boolean
+    default: false
+  pokus_nodejs_version:
+    type: string
+    default: "18.17.1"
+  ci_worksp ace_root:
+    type: string
+    default: "/.ci.workspace/workspace"
+  # --- 
+  # npm_publish_auth_secret_* are credentials to 
+  # be able to publish to [https://npmjs.org] 
+  # 
+  npm_publish_auth_secret_user:
+    type: string
+    default: "pokus"
+  npm_publish_auth_secret_pwd:
+    type: string
+    default: "pokus"
+  dockerhub_auth_secret_user:
+    type: string
+    default: "pokus"
+  dockerhub_auth_secret_pwd:
+    type: string
+    default: "pokus"
+
+
+jobs:
+  pr_unit_tests:
+    # <<: *pokus-jobs-common
+    docker:
+      # ---
+      #  https://hub.docker.com/r/cimg/node/tags
+      # ---
+      # - image: cimg/go:<< pipeline.parameters.pokus_golang_version >>
+      - image: cimg/node:<< pipeline.parameters.pokus_nodejs_version >>
+    # resource_class: pokusio/podman-small1
+    environment:
+      BASH_ENV: /home/circleci/.profile
+      CHECK_WORKSPACE_FULLPATH: /<< pipeline.parameters.ci_workspace_root >>/workspace
+    steps:
+      # <<: *pokus-common-steps
+      - run:
+          name: "Env Setup"
+          command: |
+              touch "$BASH_ENV"
+              echo 'export GIT_SHA1="$CIRCLE_SHA1"' >> "$BASH_ENV"
+              echo "Check env : CHECK_WORKSPACE_FULLPATH= [${CHECK_WORKSPACE_FULLPATH}]"
+      - run:
+          name: "Resolve System dependencies"
+          command: |
+              # install pnpm
+              curl -fsSL https://get.pnpm.io/install.sh | sh -
+              # install surge
+              pnpm add -g surge
+              pnpm --version
+              surge --version
+      - checkout
+      - run:
+          name: "Resolve Astro Project Dependencies"
+          command: |
+              pnpm i
+      - run:
+          name: "Run Unit Tests"
+          command: | 
+              cd ${POKUS_PRJ_DIR}
+              echo "POKUS_PRJ_DIR=[${POKUS_PRJ_DIR}]"
+              pwd
+              pnpm run tests || true
+  pr_astro_build:
+    # <<: *pokus-jobs-common
+    docker:
+      # ---
+      #  https://hub.docker.com/r/cimg/node/tags
+      # ---
+      # - image: cimg/go:<< pipeline.parameters.pokus_golang_version >>
+      - image: cimg/node:<< pipeline.parameters.pokus_nodejs_version >>
+    # resource_class: pokusio/podman-small1
+    environment:
+      BASH_ENV: /home/circleci/.profile
+    steps:
+      # <<: *pokus-common-steps
+      - run:
+          name: "Run Astro Build"
+          command: |
+              pnpm run build
+      - persist_to_workspace:
+          root: .ci.workspace
+          paths:
+            - dist
+          # # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
+          # # taken to be the root directory of the workspace.
+          # root: workspace
+          # # Must be relative path from root
+          # paths:
+          #   - echo-output
+  pr_deployment:
+    # <<: *pokus-jobs-common
+    docker:
+      # ---
+      #  https://hub.docker.com/r/cimg/node/tags
+      # ---
+      # - image: cimg/go:<< pipeline.parameters.pokus_golang_version >>
+      - image: cimg/node:<< pipeline.parameters.pokus_nodejs_version >>
+    # resource_class: pokusio/podman-small1
+    environment:
+      BASH_ENV: /home/circleci/.profile
+    steps:
+      # <<: *pokus-common-steps
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: /<< pipeline.parameters.ci_workspace_root >>/workspace
+      - run:
+          name: "Deploy PR to surge.sh"
+          command: |
+              pnpm run build
+
+workflows:
+  version: 2
+  pr_unit_tests_flow:
+    when: 
+      not: << pipeline.parameters.dockerize_me >> 
+    jobs:
+      - pr_unit_tests
+      - build_hello_pokus:
+          requires:
+            - pr_unit_tests
+      - e2e_test_hello_pokus:
+          requires:
+            - build_hello_pokus
+      - run_hello_pokus:
+          requires:
+            - e2e_test_hello_pokus
+      - approve_publish_gomod: # <<< A job that will require manual approval in the CircleCI web application.
+          type: approval # <<< This key-value pair will set your workflow to a status of "On Hold"
+          requires:
+            - e2e_test_hello_pokus
+      - publish_hello_pokus_gomod:
+          requires:
+            - approve_publish_gomod
+
+
+  hello_pokus_containers_ci:
+    when: << pipeline.parameters.dockerize_me >> 
+    jobs:
+      - docker_build_hello_pokus:
+          oci_gun_registry: docker.io
+          oci_gun_org: pokusio.io
+          oci_gun_project: go-hello-pokus
+          oci_gun_tag: 0.0.1
+      - approve_docker_push: # <<< A job that will require manual approval in the CircleCI web application.
+          type: approval # <<< This key-value pair will set your workflow to a status of "On Hold"
+          requires:
+            - docker_build_hello_pokus
+      - docker_push_hello_pokus:
+          oci_gun_registry: docker.io
+          oci_gun_org: pokusio.io
+          oci_gun_project: go-hello-pokus
+          oci_gun_tag: 0.0.1
+          requires:
+            - approve_docker_push
+
+
+
+
+
+
+
+
+# -------------------------------------
+#  Workspaces
+# https://circleci.com/docs/workspaces/
+# -------------------------------------
+# -------------------------------------
+# CI Container Images
+#  https://hub.docker.com/r/cimg/node/tags
+# 
+# -------------------------------------

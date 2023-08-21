@@ -8,9 +8,9 @@ parameters:
   pokus_nodejs_version:
     type: string
     default: "18.17.1"
-  ci_worksp ace_root:
+  ci_workspace_root:
     type: string
-    default: "/.ci.workspace/workspace"
+    default: ".ci.workspace" # /.ci.workspace/workspace
   # --- 
   # npm_publish_auth_secret_* are credentials to 
   # be able to publish to [https://npmjs.org] 

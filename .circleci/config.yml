@@ -268,9 +268,9 @@ jobs:
       - run:
           name: "Configure Auth for surge.sh"
           command: |
-            echo $SURGE_USER | tee ./surge_user.user
-            echo "SURGE_USER = [value next line]"
-            cat ./surge_user.user
+            # echo $SURGE_USER | tee ./surge_user.user
+            # echo "SURGE_USER = [value next line]"
+            # cat ./surge_user.user
             echo ' ------------------------------------------------------- '
             echo " Content of the ASTRO_BUILD_DIR=[${ASTRO_BUILD_DIR}] : "
             ls -alh ${ASTRO_BUILD_DIR}
@@ -278,6 +278,7 @@ jobs:
             ls -alh ${ASTRO_BUILD_DIR}
             rm ./.generated.netrc || true
             cp ./.circleci/assets/surge/.template.netrc ./.generated.netrc
+            export SURGE_USER='jean.baptiste.lasselle.pokus@gmail.com'
             sed -i "s~SURGE_USER_PLACEHODER~${SURGE_USER}~g" ./.generated.netrc
             sed -i "s~SURGE_SECRET_PLACEHODER~${SURGE_SECRET}~g" ./.generated.netrc
             

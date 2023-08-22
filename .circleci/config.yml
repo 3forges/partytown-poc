@@ -126,7 +126,8 @@ jobs:
     environment:
       BASH_ENV: /home/circleci/.profile
       PR_BRANCH_NAME: /home/circleci/.profile
-      ASTRO_BUILD_DIR: /<< pipeline.parameters.ci_workspace_root >>/workspace/dist/
+      # ASTRO_BUILD_DIR: /<< pipeline.parameters.ci_workspace_root >>/workspace/dist/
+      CI_WORKSPACE_ROOT: << pipeline.parameters.ci_workspace_root >>
     steps:
       # <<: *pokus-common-steps
       - run:
@@ -134,6 +135,9 @@ jobs:
           command: |
               touch "$BASH_ENV"
               echo 'export GIT_SHA1="$CIRCLE_SHA1"' >> "$BASH_ENV"
+              export ASTRO_BUILD_DIR="/${CI_WORKSPACE_ROOT}/workspace/dist"
+              echo "export ASTRO_BUILD_DIR=${ASTRO_BUILD_DIR}" >> "$BASH_ENV"
+              echo ""
               echo "Check env : CHECK_WORKSPACE_FULLPATH= [${CHECK_WORKSPACE_FULLPATH}]"
       - run:
           name: "Resolve System dependencies"
@@ -147,7 +151,7 @@ jobs:
       - checkout
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
-          at: $ASTRO_BUILD_DIR
+          at: /${CI_WORKSPACE_ROOT}/workspace/dist
       - run:
           name: "Configure Auth for surge.sh"
           command: |

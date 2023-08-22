@@ -7,7 +7,8 @@ parameters:
     default: false
   pokus_nodejs_version:
     type: string
-    default: "18.17.1"
+    # default: "18.17.1"
+    default: "lts-bookworm"
   ci_workspace_root:
     type: string
     default: ".ci.workspace" # /.ci.workspace/workspace
@@ -37,7 +38,9 @@ jobs:
       #  https://hub.docker.com/r/cimg/node/tags
       # ---
       # - image: cimg/go:<< pipeline.parameters.pokus_golang_version >>
-      - image: cimg/node:<< pipeline.parameters.pokus_nodejs_version >>
+      # - image: cimg/node:<< pipeline.parameters.pokus_nodejs_version >>
+      - image: node/node:<< pipeline.parameters.pokus_nodejs_version >>
+      
     # resource_class: pokusio/podman-small1
     environment:
       BASH_ENV: /home/circleci/.profile
@@ -96,7 +99,9 @@ jobs:
       #  https://hub.docker.com/r/cimg/node/tags
       # ---
       # - image: cimg/go:<< pipeline.parameters.pokus_golang_version >>
-      - image: cimg/node:<< pipeline.parameters.pokus_nodejs_version >>
+      # - image: cimg/node:<< pipeline.parameters.pokus_nodejs_version >>
+      - image: node/node:<< pipeline.parameters.pokus_nodejs_version >>
+      
     # resource_class: pokusio/podman-small1
     environment:
       BASH_ENV: /home/circleci/.profile
@@ -147,7 +152,9 @@ jobs:
       #  https://hub.docker.com/r/cimg/node/tags
       # ---
       # - image: cimg/go:<< pipeline.parameters.pokus_golang_version >>
-      - image: "cimg/node:<< pipeline.parameters.pokus_nodejs_version >>"
+      # - image: cimg/node:<< pipeline.parameters.pokus_nodejs_version >>
+      - image: node/node:<< pipeline.parameters.pokus_nodejs_version >>
+      
     # resource_class: pokusio/podman-small1
     environment:
       BASH_ENV: /home/circleci/.profile
@@ -247,7 +254,8 @@ jobs:
       #  https://hub.docker.com/r/cimg/node/tags
       # ---
       # - image: cimg/go:<< pipeline.parameters.pokus_golang_version >>
-      - image: cimg/node:<< pipeline.parameters.pokus_nodejs_version >>
+      # - image: cimg/node:<< pipeline.parameters.pokus_nodejs_version >>
+      - image: node/node:<< pipeline.parameters.pokus_nodejs_version >>
     # resource_class: pokusio/podman-small1
     environment:
       BASH_ENV: /home/circleci/.profile
@@ -322,7 +330,9 @@ jobs:
       #  https://hub.docker.com/r/cimg/node/tags
       # ---
       # - image: cimg/go:<< pipeline.parameters.pokus_golang_version >>
-      - image: cimg/node:<< pipeline.parameters.pokus_nodejs_version >>
+      # - image: cimg/node:<< pipeline.parameters.pokus_nodejs_version >>
+      - image: node/node:<< pipeline.parameters.pokus_nodejs_version >>
+      
     # resource_class: pokusio/podman-small1
     environment:
       BASH_ENV: /home/circleci/.profile
@@ -385,5 +395,5 @@ workflows:
 # -------------------------------------
 # CI Container Images
 #  https://hub.docker.com/r/cimg/node/tags
-# 
+#  https://hub.docker.com/_/node/tags?page=1&name=book
 # -------------------------------------

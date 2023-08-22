@@ -43,7 +43,8 @@ jobs:
       
     # resource_class: pokusio/podman-small1
     environment:
-      BASH_ENV: /home/circleci/.profile
+      # BASH_ENV: /home/circleci/.profile
+      BASH_ENV: ~/.profile
       CHECK_WORKSPACE_FULLPATH: /<< pipeline.parameters.ci_workspace_root >>/workspace
     steps:
       # <<: *pokus-common-steps
@@ -54,6 +55,7 @@ jobs:
       - run:
           name: "Env Setup"
           command: |
+              # mkdir -p /home/circleci/
               touch "$BASH_ENV"
               echo 'export GIT_SHA1="$CIRCLE_SHA1"' >> "$BASH_ENV"
               export ASTRO_BUILD_DIR="/${CI_WORKSPACE_ROOT}/workspace/dist"

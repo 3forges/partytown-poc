@@ -206,7 +206,7 @@ jobs:
     environment:
       PNPM_VERSION: 7.5.1
       SHELL: /bin/bash
-      BASH_ENV: /home/circleci/.profile
+      # BASH_ENV: /home/circleci/.profile
       PR_BRANCH_NAME: ${CIRCLE_BRANCH}
       # CI_WORKSPACE_ROOT: << pipeline.parameters.ci_workspace_root >>
       # CI_WORKSPACE_ROOT: /.ci.workspace
@@ -324,7 +324,7 @@ jobs:
     environment:
       PNPM_VERSION: 7.5.1
       SHELL: /bin/bash
-      BASH_ENV: /home/circleci/.profile
+      # BASH_ENV: /home/circleci/.profile
     steps:
       # <<: *pokus-common-steps
       - run:
@@ -436,13 +436,17 @@ jobs:
     environment:
       PNPM_VERSION: 7.5.1
       SHELL: /bin/bash
-      # BASH_ENV: /home/circleci/.profile
+      BASH_ENV: /home/circleci/.profile
       RELEASE_TAG: << pipeline.git.tag >>
     steps:
       # <<: *pokus-common-steps
       - run:
           name: "Run Release Preps"
           command: |
+              whoami
+              pwd
+              mkdir -p ${HOME}
+              touch $BASH_ENV
               echo "RELEASE_TAG = [${RELEASE_TAG}]"
               echo "Run release preps: tools and system dependencies installation"
               

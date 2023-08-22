@@ -303,28 +303,28 @@ workflows:
           type: approval # <<< This key-value pair will set your workflow to a status of "On Hold"
           requires:
             - e2e_tests_justincurieux
-      - pr_deployment:
-          context: cicd-orchestrator
-          filters:
-            branches:
-              only:
-                # - master
-                # - develop
-                # ---
-                - /^feature\/.*/
-                - /^support\/.*/
-                - /^bugfix\/.*/
-                - /^hotfix\/.*/
-                # - /^release\/.*/
-                # ---
-            tags:
-              # only: /^v.*/
-              only:
-                - /^[0-9]+.[0-9]+.[0-9]+/
-                - /^[0-9]+.[0-9]+.[0-9]+-alpha/
-                - /^[0-9]+.[0-9]+.[0-9]+-beta/
-          requires:
-            - approve_deployment
+      # - pr_deployment:
+      #     context: cicd-orchestrator
+      #     filters:
+      #       branches:
+      #         only:
+      #           # - master
+      #           # - develop
+      #           # ---
+      #           - /^feature\/.*/
+      #           - /^support\/.*/
+      #           - /^bugfix\/.*/
+      #           - /^hotfix\/.*/
+      #           # - /^release\/.*/
+      #           # ---
+      #       tags:
+      #         # only: /^v.*/
+      #         only:
+      #           - /^[0-9]+.[0-9]+.[0-9]+/
+      #           - /^[0-9]+.[0-9]+.[0-9]+-alpha/
+      #           - /^[0-9]+.[0-9]+.[0-9]+-beta/
+      #     requires:
+      #       - approve_deployment
 
 
 

@@ -157,13 +157,26 @@ jobs:
               # bash -c 'pnpm --version'
               surge --version
       - run:
+          name: "Resolve Astro Project Dependencies"
+          command: |
+              pnpm i
+      - run:
           name: "Run Astro Build"
           command: |
               pnpm run build
+      - run:
+          name: "pnpm root path"
+          command: |
+              pnpm root path
       - persist_to_workspace:
           root: .ci.workspace
           paths:
             - dist
+            - node_modules
+      - persist_to_workspace:
+          root: /root/.local/share
+          paths:
+            - pnpm
           # # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
           # # taken to be the root directory of the workspace.
           # root: workspace

@@ -56,6 +56,7 @@ jobs:
           name: "Env Setup"
           command: |
               # mkdir -p /home/circleci/
+              mkdir -p ${HOME}
               touch "$BASH_ENV"
               echo 'export GIT_SHA1="$CIRCLE_SHA1"' >> "$BASH_ENV"
               export ASTRO_BUILD_DIR="/${CI_WORKSPACE_ROOT}/workspace/dist"

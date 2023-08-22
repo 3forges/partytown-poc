@@ -85,22 +85,6 @@ jobs:
     steps:
       # <<: *pokus-common-steps
       - run:
-          name: "Env Setup"
-          command: |
-              touch "$BASH_ENV"
-              echo 'export GIT_SHA1="$CIRCLE_SHA1"' >> "$BASH_ENV"
-              echo "Check env : CHECK_WORKSPACE_FULLPATH= [${CHECK_WORKSPACE_FULLPATH}]"
-      - run:
-          name: "Resolve System dependencies"
-          command: |
-              # install pnpm
-              curl -fsSL https://get.pnpm.io/install.sh | sh -
-              # install surge
-              pnpm add -g surge
-              pnpm --version
-              surge --version
-      - checkout
-      - run:
           name: "Run Astro Build"
           command: |
               pnpm run build
@@ -129,22 +113,6 @@ jobs:
       ASTRO_BUILD_DIR: /<< pipeline.parameters.ci_workspace_root >>/workspace/dist/
     steps:
       # <<: *pokus-common-steps
-      - run:
-          name: "Env Setup"
-          command: |
-              touch "$BASH_ENV"
-              echo 'export GIT_SHA1="$CIRCLE_SHA1"' >> "$BASH_ENV"
-              echo "Check env : CHECK_WORKSPACE_FULLPATH= [${CHECK_WORKSPACE_FULLPATH}]"
-      - run:
-          name: "Resolve System dependencies"
-          command: |
-              # install pnpm
-              curl -fsSL https://get.pnpm.io/install.sh | sh -
-              # install surge
-              pnpm add -g surge
-              pnpm --version
-              surge --version
-      - checkout
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
           at: /<< pipeline.parameters.ci_workspace_root >>/workspace
@@ -163,15 +131,8 @@ jobs:
                 password ${SURGE_SECRET}
             EOF
             bash -c 'cat ./.generated.netrc | tee -a ~/.netrc'
-            echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
-            echo "   "
             echo "surge whoami"
-            echo "   "
-            echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
-            echo "   "
             surge whoami
-            echo "   "
-            echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
       - run:
           name: "Deploy PR to surge.sh"
           command: |
@@ -203,33 +164,15 @@ jobs:
     steps:
       # <<: *pokus-common-steps
       - run:
-          name: "Env Setup"
-          command: |
-              touch "$BASH_ENV"
-              echo 'export GIT_SHA1="$CIRCLE_SHA1"' >> "$BASH_ENV"
-              echo "Check env : CHECK_WORKSPACE_FULLPATH= [${CHECK_WORKSPACE_FULLPATH}]"
-      - run:
-          name: "Resolve System dependencies"
-          command: |
-              # install pnpm
-              curl -fsSL https://get.pnpm.io/install.sh | sh -
-              # install surge
-              pnpm add -g surge
-              pnpm --version
-              surge --version
-      - checkout
-      - run:
-          name: "Install Tests Dependencies"
+          name: "Install System Dependencies"
           command: |
               npm init playwright@latest
-              # Install Playwright browsers (can be done manually via 'npx playwright install')?
-              pnpm dlx playwright install
       - run:
-          name: "Run e2e Playwright Tests"
+          name: "Run e2e Tests"
           command: |
               echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
               echo "   "
-              echo "   Run e2e Playwright Tests"
+              echo "   Run e2e Tests"
               echo "   "
               echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
               echo "   "
@@ -239,22 +182,6 @@ jobs:
               echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
               pnpm dlx playwright test
               # npx playwright test
-      - run:
-          name: "Run e2e Cypress Tests"
-          command: |
-              echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
-              echo "   "
-              echo "   Run e2e Cypress Tests"
-              echo "   "
-              echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
-      - run:
-          name: "Run UI Components Tests : Storybook"
-          command: |
-              echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
-              echo "   "
-              echo "   Run e2e Storybook Tests"
-              echo "   see https://storybook.js.org/blog/ui-testing-playbook/"
-              echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
 
   release_deployment:
     # <<: *pokus-jobs-common
@@ -297,15 +224,15 @@ workflows:
           context: cicd-orchestrator
           filters:
             branches:
-              only:
-                # - master
-                # - develop
+              ignore:
+                - master
+                - develop
                 # ---
                 - /^feature\/.*/
                 - /^support\/.*/
                 - /^bugfix\/.*/
                 - /^hotfix\/.*/
-                # - /^release\/.*/
+                - /^release\/.*/
                 # ---
             tags:
               # only: /^v.*/
@@ -315,6 +242,192 @@ workflows:
                 - /^[0-9]+.[0-9]+.[0-9]+-beta/
           requires:
             - approve_deployment
+
+  staging:
+    # --- --- 
+    # I created with the Circle CI Web UI, the Schedule named "staging_deployment" 
+    #  https://circleci.com/docs/scheduled-pipelines/#get-started-with-scheduled-pipelines
+    #  https://circleci.com/docs/schedule-pipelines-with-multiple-workflows/
+    when:
+      and:
+        - equal: [ scheduled_pipeline, << pipeline.trigger_source >> ]
+        - equal: [ staging_deployment, << pipeline.schedule.name >> ]
+        - equal: [ develop, << pipeline.git.branch >> ]
+    jobs:
+      - pr_unit_tests
+      - build_justincurieux:
+          requires:
+            - pr_unit_tests
+      - e2e_tests_justincurieux:
+          requires:
+            - build_justincurieux
+      - approve_deployment: # <<< A job that will require manual approval in the CircleCI web application.
+          type: approval # <<< This key-value pair will set your workflow to a status of "On Hold"
+          requires:
+            - e2e_tests_justincurieux
+      - pr_deployment:
+          context: cicd-orchestrator
+          requires:
+            - approve_deployment
+
+  release:
+    # --- --- 
+    #  About "pipeline.trigger_source", see https://circleci.com/docs/pipeline-variables/#pipeline-values
+    # 
+    when:
+      and:
+        - equal: [ webhook, << pipeline.trigger_source >> ]
+        - equal: [ master, << pipeline.git.branch >> ]
+    jobs:
+      - release_unit_tests:
+          filters:
+            branches:
+              ignore:
+                - master
+                - develop
+                # ---
+                - /^feature\/.*/
+                - /^support\/.*/
+                - /^bugfix\/.*/
+                - /^hotfix\/.*/
+                - /^release\/.*/
+                # ---
+            tags:
+              # only: /^v.*/
+              only:
+                - /^[0-9]+.[0-9]+.[0-9]+/
+                - /^[0-9]+.[0-9]+.[0-9]+-alpha/
+                - /^[0-9]+.[0-9]+.[0-9]+-beta/
+      - build_justincurieux:
+          requires:
+            - pr_unit_tests
+          filters:
+            branches:
+              ignore:
+                - master
+                - develop
+                # ---
+                - /^feature\/.*/
+                - /^support\/.*/
+                - /^bugfix\/.*/
+                - /^hotfix\/.*/
+                - /^release\/.*/
+                # ---
+            tags:
+              # only: /^v.*/
+              only:
+                - /^[0-9]+.[0-9]+.[0-9]+/
+                - /^[0-9]+.[0-9]+.[0-9]+-alpha/
+                - /^[0-9]+.[0-9]+.[0-9]+-beta/
+      - e2e_tests_justincurieux:
+          requires:
+            - build_justincurieux
+          filters:
+            branches:
+              ignore:
+                - master
+                - develop
+                # ---
+                - /^feature\/.*/
+                - /^support\/.*/
+                - /^bugfix\/.*/
+                - /^hotfix\/.*/
+                - /^release\/.*/
+                # ---
+            tags:
+              # only: /^v.*/
+              only:
+                - /^[0-9]+.[0-9]+.[0-9]+/
+                - /^[0-9]+.[0-9]+.[0-9]+-alpha/
+                - /^[0-9]+.[0-9]+.[0-9]+-beta/
+      - approve_release: # <<< A job that will require manual approval in the CircleCI web application.
+          type: approval # <<< This key-value pair will set your workflow to a status of "On Hold"
+          requires:
+            - e2e_tests_justincurieux
+          filters:
+            branches:
+              ignore:
+                - master
+                - develop
+                # ---
+                - /^feature\/.*/
+                - /^support\/.*/
+                - /^bugfix\/.*/
+                - /^hotfix\/.*/
+                - /^release\/.*/
+                # ---
+            tags:
+              # only: /^v.*/
+              only:
+                - /^[0-9]+.[0-9]+.[0-9]+/
+                - /^[0-9]+.[0-9]+.[0-9]+-alpha/
+                - /^[0-9]+.[0-9]+.[0-9]+-beta/
+      - pr_deployment:
+          context: cicd-orchestrator
+          filters:
+            branches:
+              ignore:
+                - master
+                - develop
+                # ---
+                - /^feature\/.*/
+                - /^support\/.*/
+                - /^bugfix\/.*/
+                - /^hotfix\/.*/
+                - /^release\/.*/
+                # ---
+            tags:
+              # only: /^v.*/
+              only:
+                - /^[0-9]+.[0-9]+.[0-9]+/
+                - /^[0-9]+.[0-9]+.[0-9]+-alpha/
+                - /^[0-9]+.[0-9]+.[0-9]+-beta/
+          requires:
+            - approve_release
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#   justincurieux_containers_ci:
+#     when: << pipeline.parameters.dockerize_me >> 
+#     jobs:
+#       - docker_build_justincurieux:
+#           oci_gun_registry: docker.io
+#           oci_gun_org: pokusio.io
+#           oci_gun_project: go-hello-pokus
+#           oci_gun_tag: 0.0.1
+#       - approve_docker_push: # <<< A job that will require manual approval in the CircleCI web application.
+#           type: approval # <<< This key-value pair will set your workflow to a status of "On Hold"
+#           requires:
+#             - docker_build_justincurieux
+#       - docker_push_justincurieux:
+#           oci_gun_registry: docker.io
+#           oci_gun_org: pokusio.io
+#           oci_gun_project: go-hello-pokus
+#           oci_gun_tag: 0.0.1
+#           requires:
+#             - approve_docker_push
+
+
+
+
 
 
 

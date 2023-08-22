@@ -147,7 +147,7 @@ jobs:
       - checkout
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
-          at: /<< pipeline.parameters.ci_workspace_root >>/workspace
+          at: $ASTRO_BUILD_DIR
       - run:
           name: "Configure Auth for surge.sh"
           command: |

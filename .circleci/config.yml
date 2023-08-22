@@ -46,6 +46,7 @@ jobs:
       # BASH_ENV: /home/circleci/.profile
       # BASH_ENV: ~/.profile
       # BASH_ENV: ${HOME}/.profile
+      SHELL: /bin/bash
       CHECK_WORKSPACE_FULLPATH: /<< pipeline.parameters.ci_workspace_root >>/workspace
     steps:
       # <<: *pokus-common-steps

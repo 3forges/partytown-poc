@@ -46,6 +46,7 @@ jobs:
       # BASH_ENV: /home/circleci/.profile
       # BASH_ENV: ~/.profile
       # BASH_ENV: ${HOME}/.profile
+      PNPM_VERSION: 7.5.1
       SHELL: /bin/bash
       CHECK_WORKSPACE_FULLPATH: /<< pipeline.parameters.ci_workspace_root >>/workspace
     steps:
@@ -77,6 +78,8 @@ jobs:
               apt-get update -y && apt-get install -y  bash curl jq wget
               # install pnpm
               bash -c 'curl -fsSL https://get.pnpm.io/install.sh | sh -'
+              # PNPM_VERSION: 7.5.1
+              bash -c "curl -fsSL https://get.pnpm.io/install.sh | env PNPM_VERSION=${PNPM_VERSION} sh -"
               cat ./.circleci/assets/pnpm/.bashrc.addon | tee -a /root/.bashrc
               cat ./.circleci/assets/pnpm/.bashrc.addon | tee -a ~/.bashrc
               cat ./.circleci/assets/pnpm/.bashrc.addon | tee -a /root/.profile
@@ -110,6 +113,7 @@ jobs:
     working_directory: /root/project
     # resource_class: pokusio/podman-small1
     environment:
+      PNPM_VERSION: 7.5.1
       # BASH_ENV: /home/circleci/.profile
       # BASH_ENV: ~/.profile
       # BASH_ENV: ${HOME}/.profile
@@ -144,6 +148,8 @@ jobs:
               apt-get update -y && apt-get install -y  bash curl jq wget
               # install pnpm
               bash -c 'curl -fsSL https://get.pnpm.io/install.sh | sh -'
+              # PNPM_VERSION: 7.5.1
+              bash -c "curl -fsSL https://get.pnpm.io/install.sh | env PNPM_VERSION=${PNPM_VERSION} sh -"
               cat ./.circleci/assets/pnpm/.bashrc.addon | tee -a /root/.bashrc
               cat ./.circleci/assets/pnpm/.bashrc.addon | tee -a ~/.bashrc
               cat ./.circleci/assets/pnpm/.bashrc.addon | tee -a /root/.profile
@@ -195,6 +201,8 @@ jobs:
       
     # resource_class: pokusio/podman-small1
     environment:
+      PNPM_VERSION: 7.5.1
+      SHELL: /bin/bash
       BASH_ENV: /home/circleci/.profile
       PR_BRANCH_NAME: << pipeline.git.branch >>
       CI_WORKSPACE_ROOT: << pipeline.parameters.ci_workspace_root >>
@@ -220,6 +228,8 @@ jobs:
               apt-get update -y && apt-get install -y  bash curl jq wget
               # install pnpm
               bash -c 'curl -fsSL https://get.pnpm.io/install.sh | sh -'
+              # PNPM_VERSION: 7.5.1
+              bash -c "curl -fsSL https://get.pnpm.io/install.sh | env PNPM_VERSION=${PNPM_VERSION} sh -"
               # install surge
               bash -c 'pnpm add -g surge'
               bash -c 'pnpm --version'
@@ -230,6 +240,8 @@ jobs:
               apt-get update -y && apt-get install -y  bash curl jq wget
               # install pnpm
               bash -c 'curl -fsSL https://get.pnpm.io/install.sh | sh -'
+              # PNPM_VERSION: 7.5.1
+              bash -c "curl -fsSL https://get.pnpm.io/install.sh | env PNPM_VERSION=${PNPM_VERSION} sh -"
               # install surge
               bash -c 'pnpm add -g surge'
               bash -c 'pnpm --version'
@@ -296,6 +308,8 @@ jobs:
       - image: node:<< pipeline.parameters.pokus_nodejs_version >>
     # resource_class: pokusio/podman-small1
     environment:
+      PNPM_VERSION: 7.5.1
+      SHELL: /bin/bash
       BASH_ENV: /home/circleci/.profile
     steps:
       # <<: *pokus-common-steps
@@ -318,6 +332,8 @@ jobs:
               apt-get update -y && apt-get install -y  bash curl jq wget
               # install pnpm
               bash -c 'curl -fsSL https://get.pnpm.io/install.sh | sh -'
+              # PNPM_VERSION: 7.5.1
+              bash -c "curl -fsSL https://get.pnpm.io/install.sh | env PNPM_VERSION=${PNPM_VERSION} sh -"
               # install surge
               bash -c 'pnpm add -g surge'
               bash -c 'pnpm --version'
@@ -373,6 +389,8 @@ jobs:
       
     # resource_class: pokusio/podman-small1
     environment:
+      PNPM_VERSION: 7.5.1
+      SHELL: /bin/bash
       BASH_ENV: /home/circleci/.profile
       RELEASE_TAG: << pipeline.git.tag >>
     steps:

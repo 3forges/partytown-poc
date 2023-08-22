@@ -50,7 +50,7 @@ jobs:
       - run:
           name: "Resolve System dependencies"
           command: |
-              apt-get update -y && apt-get install -y add bash curl jq wget
+              apt-get update -y && apt-get install -y  bash curl jq wget
       - run:
           name: "Env Setup"
           command: |
@@ -63,7 +63,7 @@ jobs:
       - run:
           name: "Install CI Job dependencies"
           command: |
-              apt-get update -y && apt-get install -y add bash curl jq wget
+              apt-get update -y && apt-get install -y  bash curl jq wget
               # install pnpm
               bash -c 'curl -fsSL https://get.pnpm.io/install.sh | sh -'
               # install surge
@@ -73,7 +73,7 @@ jobs:
       - run:
           name: "Install CI Job dependencies"
           command: |
-              apt-get update -y && apt-get install -y add bash curl jq wget
+              apt-get update -y && apt-get install -y  bash curl jq wget
               # install pnpm
               bash -c 'curl -fsSL https://get.pnpm.io/install.sh | sh -'
               # install surge
@@ -110,7 +110,7 @@ jobs:
       - run:
           name: "Resolve System dependencies"
           command: |
-              apt-get update -y && apt-get install -y add bash curl jq wget
+              apt-get update -y && apt-get install -y  bash curl jq wget
       - run:
           name: "Env Setup"
           command: |
@@ -123,7 +123,7 @@ jobs:
       - run:
           name: "Install CI Job dependencies"
           command: |
-              apt-get update -y && apt-get install -y add bash curl jq wget
+              apt-get update -y && apt-get install -y  bash curl jq wget
               # install pnpm
               bash -c 'curl -fsSL https://get.pnpm.io/install.sh | sh -'
               # install surge
@@ -166,7 +166,7 @@ jobs:
       - run:
           name: "Resolve System dependencies"
           command: |
-              apt-get update -y && apt-get install -y add bash curl jq wget
+              apt-get update -y && apt-get install -y  bash curl jq wget
       - run:
           name: "Env Setup"
           command: |
@@ -179,7 +179,7 @@ jobs:
       - run:
           name: "Install CI Job dependencies"
           command: |
-              apt-get update -y && apt-get install -y add bash curl jq wget
+              apt-get update -y && apt-get install -y  bash curl jq wget
               # install pnpm
               bash -c 'curl -fsSL https://get.pnpm.io/install.sh | sh -'
               # install surge
@@ -189,7 +189,7 @@ jobs:
       - run:
           name: "Install CI Job dependencies"
           command: |
-              apt-get update -y && apt-get install -y add bash curl jq wget
+              apt-get update -y && apt-get install -y  bash curl jq wget
               # install pnpm
               bash -c 'curl -fsSL https://get.pnpm.io/install.sh | sh -'
               # install surge
@@ -264,7 +264,7 @@ jobs:
       - run:
           name: "Resolve System dependencies"
           command: |
-              apt-get update -y && apt-get install -y add bash curl jq wget
+              apt-get update -y && apt-get install -y  bash curl jq wget
       - run:
           name: "Env Setup"
           command: |
@@ -277,7 +277,7 @@ jobs:
       - run:
           name: "Install CI Job dependencies"
           command: |
-              apt-get update -y && apt-get install -y add bash curl jq wget
+              apt-get update -y && apt-get install -y  bash curl jq wget
               # install pnpm
               bash -c 'curl -fsSL https://get.pnpm.io/install.sh | sh -'
               # install surge

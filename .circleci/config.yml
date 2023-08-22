@@ -69,6 +69,7 @@ jobs:
               echo "export ASTRO_BUILD_DIR=${ASTRO_BUILD_DIR}" >> "$BASH_ENV"
               echo ""
               
+      - checkout
       - run:
           name: "Install CI Job dependencies"
           command: |
@@ -87,7 +88,6 @@ jobs:
               pnpm --version
               # bash -c 'pnpm --version'
               surge --version
-      - checkout
       - run:
           name: "Resolve Astro Project Dependencies"
           command: |

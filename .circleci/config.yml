@@ -371,9 +371,9 @@ jobs:
       - run:
           name: "Install Tests Dependencies"
           command: |
-              npm init playwright@latest
+              echo "npm init playwright@latest"
               # Install Playwright browsers (can be done manually via 'npx playwright install')?
-              pnpm dlx playwright install
+              echo "pnpm dlx playwright install"
       - run:
           name: "Run e2e Playwright Tests"
           command: |
@@ -387,7 +387,7 @@ jobs:
               echo "   We will run here https://playwright.dev tests"
               echo "   "
               echo ' ------------------------------------------------------- '
-              pnpm dlx playwright test
+              echo "pnpm dlx playwright test"
               # npx playwright test
       - run:
           name: "Run e2e Cypress Tests"

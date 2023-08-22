@@ -259,7 +259,12 @@ jobs:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
           # at: /${CI_WORKSPACE_ROOT}/workspace/dist
-          at: /.ci.workspace/workspace
+          # at: /.ci.workspace/workspace
+          at: /root/project/workspace
+      - run:
+          name: "Display SURGE_USER"
+          command: |
+            echo $SURGE_USER
       - run:
           name: "Configure Auth for surge.sh"
           command: |

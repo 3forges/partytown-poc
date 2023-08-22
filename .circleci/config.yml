@@ -109,7 +109,7 @@ jobs:
       # - image: cimg/go:<< pipeline.parameters.pokus_golang_version >>
       # - image: cimg/node:<< pipeline.parameters.pokus_nodejs_version >>
       - image: node:<< pipeline.parameters.pokus_nodejs_version >>
-      
+    working_directory: /root/project
     # resource_class: pokusio/podman-small1
     environment:
       # BASH_ENV: /home/circleci/.profile

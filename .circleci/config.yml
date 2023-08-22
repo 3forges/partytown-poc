@@ -121,7 +121,7 @@ jobs:
       #  https://hub.docker.com/r/cimg/node/tags
       # ---
       # - image: cimg/go:<< pipeline.parameters.pokus_golang_version >>
-      - image: cimg/node:<< pipeline.parameters.pokus_nodejs_version >>
+      - image: "cimg/node:<< pipeline.parameters.pokus_nodejs_version >>"
     # resource_class: pokusio/podman-small1
     environment:
       BASH_ENV: /home/circleci/.profile

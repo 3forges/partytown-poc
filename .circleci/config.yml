@@ -174,8 +174,9 @@ jobs:
           name: "pnpm root path"
           command: |
               pnpm root path
+              mkdir -p /root/project/.ci.workspace
       - persist_to_workspace:
-          root: .ci.workspace
+          root: /root/project/.ci.workspace
           paths:
             - dist
             - node_modules

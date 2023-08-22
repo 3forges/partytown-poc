@@ -45,7 +45,7 @@ jobs:
     environment:
       # BASH_ENV: /home/circleci/.profile
       # BASH_ENV: ~/.profile
-      BASH_ENV: ${HOME}/.profile
+      # BASH_ENV: ${HOME}/.profile
       CHECK_WORKSPACE_FULLPATH: /<< pipeline.parameters.ci_workspace_root >>/workspace
     steps:
       # <<: *pokus-common-steps
@@ -57,6 +57,9 @@ jobs:
           name: "Env Setup"
           command: |
               # mkdir -p /home/circleci/
+              # mkdir -p ${HOME}
+              whoami
+              pwd
               mkdir -p ${HOME}
               touch $BASH_ENV
               echo 'export GIT_SHA1="$CIRCLE_SHA1"' >> "$BASH_ENV"

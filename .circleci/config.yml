@@ -152,10 +152,10 @@ jobs:
           name: "Configure Auth for surge.sh"
           command: |
             echo "SURGE_USER = [${SURGE_USER}]"
-            echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
+            echo ' ------------------------------------------------------- '
             echo " Content of the ASTRO_BUILD_DIR : "
             ls -alh ${ASTRO_BUILD_DIR}
-            echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
+            echo ' ------------------------------------------------------- '
             ls -alh ${ASTRO_BUILD_DIR}
             cat <<EOF >./.generated.netrc
             machine surge.surge.sh
@@ -163,31 +163,31 @@ jobs:
                 password ${SURGE_SECRET}
             EOF
             bash -c 'cat ./.generated.netrc | tee -a ~/.netrc'
-            echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
+            echo ' ------------------------------------------------------- '
             echo "   "
             echo "surge whoami"
             echo "   "
-            echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
+            echo ' ------------------------------------------------------- '
             echo "   "
             surge whoami
             echo "   "
-            echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
+            echo ' ------------------------------------------------------- '
       - run:
           name: "Deploy PR to surge.sh"
           command: |
-              echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
+              echo ' ------------------------------------------------------- '
               echo "   "
               surge ./dist/ "justincurieux_${PR_BRANCH_NAME}.surge.sh"
               echo "   "
-              echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
+              echo ' ------------------------------------------------------- '
               echo " Your deployment is ready at https://justincurieux_${PR_BRANCH_NAME}.surge.sh "
-              echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
+              echo ' ------------------------------------------------------- '
       - run:
           name: "Send Discord notification"
           command: |
-              echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
+              echo ' ------------------------------------------------------- '
               echo "   Send dicord notification"
-              echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
+              echo ' ------------------------------------------------------- '
 
   e2e_tests_justincurieux:
     # <<: *pokus-jobs-common
@@ -227,34 +227,34 @@ jobs:
       - run:
           name: "Run e2e Playwright Tests"
           command: |
-              echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
+              echo ' ------------------------------------------------------- '
               echo "   "
               echo "   Run e2e Playwright Tests"
               echo "   "
-              echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
+              echo ' ------------------------------------------------------- '
               echo "   "
               echo "   No e2e Tests executed yet."
               echo "   We will run here https://playwright.dev tests"
               echo "   "
-              echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
+              echo ' ------------------------------------------------------- '
               pnpm dlx playwright test
               # npx playwright test
       - run:
           name: "Run e2e Cypress Tests"
           command: |
-              echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
+              echo ' ------------------------------------------------------- '
               echo "   "
               echo "   Run e2e Cypress Tests"
               echo "   "
-              echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
+              echo ' ------------------------------------------------------- '
       - run:
           name: "Run UI Components Tests : Storybook"
           command: |
-              echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
+              echo ' ------------------------------------------------------- '
               echo "   "
               echo "   Run e2e Storybook Tests"
               echo "   see https://storybook.js.org/blog/ui-testing-playbook/"
-              echo "# +=+== +=+== +=+== +=+== +=+== +=+== #"
+              echo ' ------------------------------------------------------- '
 
   release_deployment:
     # <<: *pokus-jobs-common

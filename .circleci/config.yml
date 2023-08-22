@@ -174,10 +174,11 @@ jobs:
           name: "pnpm root path"
           command: |
               pnpm root path
-              mkdir -p /root/project/.ci.workspace
-              touch /root/project/.ci.workspace/galileo.astro
+              # mkdir -p /root/project/.ci.workspace
+              # touch /root/project/.ci.workspace/galileo.astro
       - persist_to_workspace:
-          root: /root/project/.ci.workspace
+          root: /root/project
+          # root: /root/project/.ci.workspace
           paths:
             - dist
             - node_modules

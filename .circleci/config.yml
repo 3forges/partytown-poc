@@ -265,9 +265,6 @@ jobs:
           name: "Display SURGE_USER"
           command: |
             echo $SURGE_USER
-            # echo $SURGE_USER | tee ./surge_user.user
-            # echo "SURGE_USER = [value next line]"
-            # cat ./surge_user.user
       - run:
           name: "Configure Auth for surge.sh"
           command: |
@@ -281,12 +278,6 @@ jobs:
             export SURGE_USER='jean.baptiste.lasselle.pokus@gmail.com'
             sed -i "s~SURGE_USER_PLACEHODER~${SURGE_USER}~g" ./.generated.netrc
             sed -i "s~SURGE_SECRET_PLACEHODER~${SURGE_SECRET}~g" ./.generated.netrc
-            
-            # cat <<EOF >./.generated.netrc
-            # machine surge.surge.sh
-            #     login ${SURGE_USER}
-            #     password ${SURGE_SECRET}
-            # EOF
             bash -c 'cat ./.generated.netrc | tee -a ~/.netrc'
             echo ' ------------------------------------------------------- '
             echo "   "

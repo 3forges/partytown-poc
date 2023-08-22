@@ -76,13 +76,6 @@ jobs:
               apt-get update -y && apt-get install -y  bash curl jq wget
               # install pnpm
               bash -c 'curl -fsSL https://get.pnpm.io/install.sh | sh -'
-              # cat <<EOF >./.generated.bashrc.addon
-              # export PNPM_HOME="/root/.local/share/pnpm"
-              # case ":$PATH:" in
-              #   *":$PNPM_HOME:"*) ;;
-              #   *) export PATH="$PNPM_HOME:$PATH" ;;
-              # esac
-              # EOF
               cat ./.circleci/assets/pnpm/.bashrc.addon | tee -a /root/.bashrc
               cat ./.circleci/assets/pnpm/.bashrc.addon | tee -a ~/.bashrc
               cat ./.circleci/assets/pnpm/.bashrc.addon | tee -a /root/.profile

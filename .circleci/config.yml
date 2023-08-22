@@ -95,9 +95,7 @@ jobs:
               pnpm i
       - run:
           name: "Run Unit Tests"
-          command: | 
-              cd ${POKUS_PRJ_DIR}
-              echo "POKUS_PRJ_DIR=[${POKUS_PRJ_DIR}]"
+          command: |
               pwd
               pnpm run tests || true
   pr_astro_build:

@@ -66,7 +66,7 @@ jobs:
               touch $BASH_ENV
               echo 'export SHELL=/bin/bash' >> "$BASH_ENV"
               echo 'export GIT_SHA1="$CIRCLE_SHA1"' >> "$BASH_ENV"
-              export ASTRO_BUILD_DIR="/${CI_WORKSPACE_ROOT}/workspace/dist"
+              export ASTRO_BUILD_DIR="${CI_WORKSPACE_ROOT}/workspace/dist"
               echo "export ASTRO_BUILD_DIR=${ASTRO_BUILD_DIR}" >> "$BASH_ENV"
               echo ""
               
@@ -136,7 +136,7 @@ jobs:
               touch $BASH_ENV
               echo 'export SHELL=/bin/bash' >> "$BASH_ENV"
               echo 'export GIT_SHA1="$CIRCLE_SHA1"' >> "$BASH_ENV"
-              export ASTRO_BUILD_DIR="/${CI_WORKSPACE_ROOT}/workspace/dist"
+              export ASTRO_BUILD_DIR="${CI_WORKSPACE_ROOT}/workspace/dist"
               echo "export ASTRO_BUILD_DIR=${ASTRO_BUILD_DIR}" >> "$BASH_ENV"
               echo ""
               
@@ -209,7 +209,8 @@ jobs:
       BASH_ENV: /home/circleci/.profile
       PR_BRANCH_NAME: ${CIRCLE_BRANCH}
       # CI_WORKSPACE_ROOT: << pipeline.parameters.ci_workspace_root >>
-      CI_WORKSPACE_ROOT: /.ci.workspace
+      # CI_WORKSPACE_ROOT: /.ci.workspace
+      CI_WORKSPACE_ROOT: /root/project
       # ASTRO_BUILD_DIR: /<< pipeline.parameters.ci_workspace_root >>/workspace/dist/
       SURGE_USER: $SURGE_USER
       SURGE_SECRET: $SURGE_SECRET
@@ -230,7 +231,7 @@ jobs:
             touch $BASH_ENV
             echo 'export SHELL=/bin/bash' >> "$BASH_ENV"
             echo 'export GIT_SHA1="$CIRCLE_SHA1"' >> "$BASH_ENV"
-            export ASTRO_BUILD_DIR="/${CI_WORKSPACE_ROOT}/workspace/dist"
+            export ASTRO_BUILD_DIR="${CI_WORKSPACE_ROOT}/workspace/dist"
             echo "export ASTRO_BUILD_DIR=${ASTRO_BUILD_DIR}" >> "$BASH_ENV"
             echo ""
       - checkout
@@ -262,7 +263,9 @@ jobs:
       - run:
           name: "Configure Auth for surge.sh"
           command: |
-            echo "SURGE_USER = [${SURGE_USER}]"
+            echo $SURGE_USER | tee ./surge_user.user
+            echo "SURGE_USER = [value next line]"
+            cat ./surge_user.user
             echo ' ------------------------------------------------------- '
             echo " Content of the ASTRO_BUILD_DIR=[${ASTRO_BUILD_DIR}] : "
             ls -alh ${ASTRO_BUILD_DIR}
@@ -336,7 +339,7 @@ jobs:
               touch $BASH_ENV
               echo 'export SHELL=/bin/bash' >> "$BASH_ENV"
               echo 'export GIT_SHA1="$CIRCLE_SHA1"' >> "$BASH_ENV"
-              export ASTRO_BUILD_DIR="/${CI_WORKSPACE_ROOT}/workspace/dist"
+              export ASTRO_BUILD_DIR="${CI_WORKSPACE_ROOT}/workspace/dist"
               echo "export ASTRO_BUILD_DIR=${ASTRO_BUILD_DIR}" >> "$BASH_ENV"
               echo ""
               

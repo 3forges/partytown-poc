@@ -45,19 +45,37 @@ jobs:
     steps:
       # <<: *pokus-common-steps
       - run:
+          name: "Resolve System dependencies"
+          command: |
+              apk update && apk add bash curl jq wget
+      - run:
           name: "Env Setup"
           command: |
               touch "$BASH_ENV"
               echo 'export GIT_SHA1="$CIRCLE_SHA1"' >> "$BASH_ENV"
-              echo "Check env : CHECK_WORKSPACE_FULLPATH= [${CHECK_WORKSPACE_FULLPATH}]"
+              export ASTRO_BUILD_DIR="/${CI_WORKSPACE_ROOT}/workspace/dist"
+              echo "export ASTRO_BUILD_DIR=${ASTRO_BUILD_DIR}" >> "$BASH_ENV"
+              echo ""
+              
       - run:
-          name: "Resolve System dependencies"
+          name: "Install CI Job dependencies"
           command: |
+              apk update && apk add bash curl jq wget
               # install pnpm
-              curl -fsSL https://get.pnpm.io/install.sh | sh -
+              bash -c 'curl -fsSL https://get.pnpm.io/install.sh | sh -'
               # install surge
-              pnpm add -g surge
-              pnpm --version
+              bash -c 'pnpm add -g surge'
+              bash -c 'pnpm --version'
+              surge --version
+      - run:
+          name: "Install CI Job dependencies"
+          command: |
+              apk update && apk add bash curl jq wget
+              # install pnpm
+              bash -c 'curl -fsSL https://get.pnpm.io/install.sh | sh -'
+              # install surge
+              bash -c 'pnpm add -g surge'
+              bash -c 'pnpm --version'
               surge --version
       - checkout
       - run:
@@ -85,19 +103,27 @@ jobs:
     steps:
       # <<: *pokus-common-steps
       - run:
+          name: "Resolve System dependencies"
+          command: |
+              apk update && apk add bash curl jq wget
+      - run:
           name: "Env Setup"
           command: |
               touch "$BASH_ENV"
               echo 'export GIT_SHA1="$CIRCLE_SHA1"' >> "$BASH_ENV"
-              echo "Check env : CHECK_WORKSPACE_FULLPATH= [${CHECK_WORKSPACE_FULLPATH}]"
+              export ASTRO_BUILD_DIR="/${CI_WORKSPACE_ROOT}/workspace/dist"
+              echo "export ASTRO_BUILD_DIR=${ASTRO_BUILD_DIR}" >> "$BASH_ENV"
+              echo ""
+              
       - run:
-          name: "Resolve System dependencies"
+          name: "Install CI Job dependencies"
           command: |
+              apk update && apk add bash curl jq wget
               # install pnpm
-              curl -fsSL https://get.pnpm.io/install.sh | sh -
+              bash -c 'curl -fsSL https://get.pnpm.io/install.sh | sh -'
               # install surge
-              pnpm add -g surge
-              pnpm --version
+              bash -c 'pnpm add -g surge'
+              bash -c 'pnpm --version'
               surge --version
       - checkout
       - run:
@@ -142,7 +168,17 @@ jobs:
               export ASTRO_BUILD_DIR="/${CI_WORKSPACE_ROOT}/workspace/dist"
               echo "export ASTRO_BUILD_DIR=${ASTRO_BUILD_DIR}" >> "$BASH_ENV"
               echo ""
-              echo "Check env : CHECK_WORKSPACE_FULLPATH= [${CHECK_WORKSPACE_FULLPATH}]"
+              
+      - run:
+          name: "Install CI Job dependencies"
+          command: |
+              apk update && apk add bash curl jq wget
+              # install pnpm
+              bash -c 'curl -fsSL https://get.pnpm.io/install.sh | sh -'
+              # install surge
+              bash -c 'pnpm add -g surge'
+              bash -c 'pnpm --version'
+              surge --version
       - run:
           name: "Install CI Job dependencies"
           command: |
@@ -218,19 +254,27 @@ jobs:
     steps:
       # <<: *pokus-common-steps
       - run:
+          name: "Resolve System dependencies"
+          command: |
+              apk update && apk add bash curl jq wget
+      - run:
           name: "Env Setup"
           command: |
               touch "$BASH_ENV"
               echo 'export GIT_SHA1="$CIRCLE_SHA1"' >> "$BASH_ENV"
-              echo "Check env : CHECK_WORKSPACE_FULLPATH= [${CHECK_WORKSPACE_FULLPATH}]"
+              export ASTRO_BUILD_DIR="/${CI_WORKSPACE_ROOT}/workspace/dist"
+              echo "export ASTRO_BUILD_DIR=${ASTRO_BUILD_DIR}" >> "$BASH_ENV"
+              echo ""
+              
       - run:
-          name: "Resolve System dependencies"
+          name: "Install CI Job dependencies"
           command: |
+              apk update && apk add bash curl jq wget
               # install pnpm
-              curl -fsSL https://get.pnpm.io/install.sh | sh -
+              bash -c 'curl -fsSL https://get.pnpm.io/install.sh | sh -'
               # install surge
-              pnpm add -g surge
-              pnpm --version
+              bash -c 'pnpm add -g surge'
+              bash -c 'pnpm --version'
               surge --version
       - checkout
       - run:

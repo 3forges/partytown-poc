@@ -175,6 +175,7 @@ jobs:
           command: |
               pnpm root path
               mkdir -p /root/project/.ci.workspace
+              touch /root/project/.ci.workspace/galileo.astro
       - persist_to_workspace:
           root: /root/project/.ci.workspace
           paths:

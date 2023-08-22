@@ -125,9 +125,9 @@ jobs:
     # resource_class: pokusio/podman-small1
     environment:
       BASH_ENV: /home/circleci/.profile
-      PR_BRANCH_NAME: /home/circleci/.profile
-      # ASTRO_BUILD_DIR: /<< pipeline.parameters.ci_workspace_root >>/workspace/dist/
+      PR_BRANCH_NAME: << pipeline.git.branch >>
       CI_WORKSPACE_ROOT: << pipeline.parameters.ci_workspace_root >>
+      # ASTRO_BUILD_DIR: /<< pipeline.parameters.ci_workspace_root >>/workspace/dist/
     steps:
       # <<: *pokus-common-steps
       - run:
@@ -158,15 +158,20 @@ jobs:
           command: |
             echo "SURGE_USER = [${SURGE_USER}]"
             echo ' ------------------------------------------------------- '
-            echo " Content of the ASTRO_BUILD_DIR : "
+            echo " Content of the ASTRO_BUILD_DIR=[${ASTRO_BUILD_DIR}] : "
             ls -alh ${ASTRO_BUILD_DIR}
             echo ' ------------------------------------------------------- '
             ls -alh ${ASTRO_BUILD_DIR}
-            cat <<EOF >./.generated.netrc
-            machine surge.surge.sh
-                login ${SURGE_USER}
-                password ${SURGE_SECRET}
-            EOF
+            rm ./.generated.netrc || true
+            cp ./.circleci/assets/surge/.template.netrc ./.generated.netrc
+            sed -i "s~SURGE_USER_PLACEHODER~${SURGE_USER}~g" ./.generated.netrc
+            sed -i "s~SURGE_SECRET_PLACEHODER~${SURGE_SECRET}~g" ./.generated.netrc
+            
+            # cat <<EOF >./.generated.netrc
+            # machine surge.surge.sh
+            #     login ${SURGE_USER}
+            #     password ${SURGE_SECRET}
+            # EOF
             bash -c 'cat ./.generated.netrc | tee -a ~/.netrc'
             echo ' ------------------------------------------------------- '
             echo "   "
@@ -182,7 +187,7 @@ jobs:
           command: |
               echo ' ------------------------------------------------------- '
               echo "   "
-              surge ./dist/ "justincurieux_${PR_BRANCH_NAME}.surge.sh"
+              surge ${ASTRO_BUILD_DIR} "https://justincurieux_${PR_BRANCH_NAME}.surge.sh"
               echo "   "
               echo ' ------------------------------------------------------- '
               echo " Your deployment is ready at https://justincurieux_${PR_BRANCH_NAME}.surge.sh "

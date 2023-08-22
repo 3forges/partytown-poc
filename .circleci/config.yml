@@ -131,6 +131,10 @@ jobs:
     steps:
       # <<: *pokus-common-steps
       - run:
+          name: "Resolve System dependencies"
+          command: |
+              apk update && apk add bash curl jq wget
+      - run:
           name: "Env Setup"
           command: |
               touch "$BASH_ENV"
@@ -140,13 +144,14 @@ jobs:
               echo ""
               echo "Check env : CHECK_WORKSPACE_FULLPATH= [${CHECK_WORKSPACE_FULLPATH}]"
       - run:
-          name: "Resolve System dependencies"
+          name: "Install CI Job dependencies"
           command: |
+              apk update && apk add bash curl jq wget
               # install pnpm
-              curl -fsSL https://get.pnpm.io/install.sh | sh -
+              bash -c 'curl -fsSL https://get.pnpm.io/install.sh | sh -'
               # install surge
-              pnpm add -g surge
-              pnpm --version
+              bash -c 'pnpm add -g surge'
+              bash -c 'pnpm --version'
               surge --version
       - checkout
       - attach_workspace:

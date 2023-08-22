@@ -207,7 +207,7 @@ jobs:
       PNPM_VERSION: 7.5.1
       SHELL: /bin/bash
       BASH_ENV: /home/circleci/.profile
-      PR_BRANCH_NAME: << pipeline.git.branch >>
+      PR_BRANCH_NAME: ${CIRCLE_BRANCH}
       CI_WORKSPACE_ROOT: << pipeline.parameters.ci_workspace_root >>
       # ASTRO_BUILD_DIR: /<< pipeline.parameters.ci_workspace_root >>/workspace/dist/
       SURGE_USER: $SURGE_USER

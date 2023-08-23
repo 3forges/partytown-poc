@@ -437,6 +437,22 @@ jobs:
               #      -H 'Content-Type: application/x-www-form-urlencoded' \
               #      -d @./.circleci/assets/discord/notification.payload.json \
               #      $DISCORD_WEBHOOK_URL
+              echo ' ------------------------------------------------------- '
+              echo "   "
+              echo "   Try sending Discord Notifications from JSON FIle Payload"
+              echo ' ------------------------------------------------------- '
+              curl -X POST \
+                   -d @./.circleci/assets/discord/notification.payload.json \
+                   $DISCORD_WEBHOOK_URL
+              echo ' ------------------------------------------------------- '
+              echo "   "
+              echo "   Try sending Discord Notifications from JSON Raw String Payload"
+              echo ' ------------------------------------------------------- '
+              export DSCRD_PAYLOAD=$(cat ./.circleci/assets/discord/notification.payload.json)
+              curl -X POST \
+                   -d "${DSCRD_PAYLOAD}" \
+                   $DISCORD_WEBHOOK_URL
+              
               export POKUS_NOTIF_MSG=' @jeanbaptiste#9951 :dash: A new {{project}} Deployment is ready ! :sparkles:'
               curl -X POST \
                    -H 'Content-Type: application/x-www-form-urlencoded' \

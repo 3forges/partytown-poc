@@ -303,7 +303,7 @@ jobs:
             cat ./.generated.netrc | tee /root/.netrc
             ls -alh ~/.netrc || true
             ls -alh /root/.netrc || true
-            surge token
+            surge token --token $SURGE_SECRET"
             echo ' ------------------------------------------------------- '
             echo "   "
             echo "surge whoami --token $SURGE_SECRET"

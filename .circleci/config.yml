@@ -443,7 +443,7 @@ jobs:
               echo "   Discord Notifications"
               echo "   https://discord.com/developers/docs/resources/webhook#execute-webhook-jsonform-params"
               echo ' ------------------------------------------------------- '
-              export RAW_DISCORD_WEBHOOK_URL=https://discordapp.com/api/webhooks/1143716758486786112/czV9yYYh7NoB9ZUm-Sr5kTyMMqyfmd1GtW0Qio5t3SCkMTFpcbNJNNp1ZjUGOFaVSfp_
+              # export RAW_DISCORD_WEBHOOK_URL=https://discordapp.com/api/webhooks/1143716758486786112/czV9yYYh7NoB9ZUm-Sr5kTyMMqyfmd1GtW0Qio5t3SCkMTFpcbNJNNp1ZjUGOFaVSfp_
               echo "DISCORD_WEBHOOK_URL = [${DISCORD_WEBHOOK_URL}]"
               export DISCORD_WEBHOOK_URL=${RAW_DISCORD_WEBHOOK_URL}
               echo "DISCORD_WEBHOOK_URL = [${DISCORD_WEBHOOK_URL}]"

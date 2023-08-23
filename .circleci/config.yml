@@ -331,7 +331,9 @@ jobs:
       - run:
           name: "Resolve System dependencies"
           command: |
-              apt-get update -y && apt-get install -y  bash curl jq wget
+              # ---
+              # gh debian package is the github cli
+              apt-get update -y && apt-get install -y  bash curl jq wget gh
       - run:
           name: "Env Setup"
           command: |

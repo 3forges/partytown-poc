@@ -14,17 +14,22 @@
       "color": 9520895,
       "author": {
         "name": "The Justin Curieux Website is deployed",
-        "url": "SURGE_DEPLOYMENT_URL_PLACEHOLDER",
+        "url": "https://www.twitch.tv/radiojaune",
         "icon_url": "https://picsum.photos/id/24/64/64"
       },
       "fields": [
         {
-          "name": ":rocket: Git branch",
+          "name": ":rocket: Deployment",
+          "value": "SURGE_DEPLOYMENT_URL_PLACEHOLDER\u200B",
+          "inline": true
+        },
+        {
+          "name": ":joystick: Git branch",
           "value": "PR_GIT_BRANCH_PLACEHOLDER\u200B",
           "inline": true
         },
         {
-          "name": ":busts_in_silhouette: Viewers",
+          "name": ":busts_in_silhouette: Github Stars",
           "value": "1427",
           "inline": true
         }

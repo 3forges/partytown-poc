@@ -536,9 +536,11 @@ workflows:
     jobs:
       - pr_unit_tests
       - pr_astro_build:
+          context: justincurieux
           requires:
             - pr_unit_tests
       - e2e_tests_justincurieux:
+          context: justincurieux
           requires:
             - pr_astro_build
       - approve_deployment: # <<< A job that will require manual approval in the CircleCI web application.
@@ -546,10 +548,11 @@ workflows:
           requires:
             - e2e_tests_justincurieux
       - pr_deployment:
+          context: justincurieux
           requires:
             - approve_deployment
       # - pr_deployment:
-      #     context: cicd-orchestrator
+      #     context: justincurieux
       #     filters:
       #       branches:
       #         only:

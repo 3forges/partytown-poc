@@ -303,13 +303,14 @@ jobs:
             cat ./.generated.netrc | tee /root/.netrc
             ls -alh ~/.netrc || true
             ls -alh /root/.netrc || true
+            surge token
             echo ' ------------------------------------------------------- '
             echo "   "
-            echo "surge whoami"
+            echo "surge whoami --token $SURGE_SECRET"
             echo "   "
             echo ' ------------------------------------------------------- '
             echo "   "
-            surge whoami
+            surge whoami --token $SURGE_SECRET
             echo "   "
             echo ' ------------------------------------------------------- '
       - run:
@@ -317,7 +318,7 @@ jobs:
           command: |
             echo ' ------------------------------------------------------- '
             echo "   "
-            surge ${ASTRO_BUILD_DIR} "https://justincurieux_${PR_BRANCH_NAME}.surge.sh"
+            surge ${ASTRO_BUILD_DIR} "https://justincurieux_${PR_BRANCH_NAME}.surge.sh" --token $SURGE_SECRET
             echo "   "
             echo ' ------------------------------------------------------- '
             echo " Your deployment is ready at https://justincurieux_${PR_BRANCH_NAME}.surge.sh "

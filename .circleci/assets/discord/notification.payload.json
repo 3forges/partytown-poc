@@ -1,5 +1,5 @@
 {
-  "content": "@everyone @&justin <@jeanbaptiste>  :dash: A new Deployment is ready ! :sparkles:",
+  "content": " @jeanbaptiste @jeanbaptiste#9951 @everyone @&justin <@jeanbaptiste> @&justin :dash: A new Deployment is ready ! :sparkles \n \n _**[View the deployed Website version](https://justin_curieux_develop.surge.sh)**_",
   "allowed_mentions": {
     "parse": ["everyone", "roles", "users"]
   },

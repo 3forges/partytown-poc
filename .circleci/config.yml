@@ -14,7 +14,8 @@ parameters:
     default: "lts-bookworm"
   ci_workspace_root:
     type: string
-    default: ".ci.workspace" # /.ci.workspace/workspace
+    default: "/.ci.workspace"
+    # /.ci.workspace/workspace
   # --- 
   # npm_publish_auth_secret_* are credentials to 
   # be able to publish to [https://npmjs.org] 
@@ -51,7 +52,6 @@ jobs:
       # BASH_ENV: ${HOME}/.profile
       PNPM_VERSION: 7.5.1
       SHELL: /bin/bash
-      CHECK_WORKSPACE_FULLPATH: /<< pipeline.parameters.ci_workspace_root >>/workspace
     steps:
       # <<: *pokus-common-steps
       - run:
@@ -121,7 +121,6 @@ jobs:
       # BASH_ENV: ~/.profile
       # BASH_ENV: ${HOME}/.profile
       SHELL: /bin/bash
-      CHECK_WORKSPACE_FULLPATH: /<< pipeline.parameters.ci_workspace_root >>/workspace
     steps:
       # <<: *pokus-common-steps
       - run:
@@ -330,6 +329,7 @@ jobs:
       # BASH_ENV: /home/circleci/.profile
       MUSTACHE_VERSION: 4.2.0
       DISCORD_WEBHOOK_URL: $DISCORD_WEBHOOK_URL
+      GITHUB_CLI_PAT: $GITHUB_CLI_PAT
     steps:
       # <<: *pokus-common-steps
       - run:
@@ -497,7 +497,8 @@ jobs:
               # --- 
               # https://cli.github.com/manual/gh_pr_comment
               # gh pr comment [<number> | <url> | <branch>] [flags]
-              export POKUS_PULL_REQUEST_NUMBER=7
+              # export POKUS_PULL_REQUEST_NUMBER=7
+              export POKUS_PULL_REQUEST_NUMBER=1
               gh pr comment ${POKUS_PULL_REQUEST_NUMBER} -F ${MOUSTACHE_OUTPUT}
 
   release_deployment:

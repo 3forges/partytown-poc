@@ -442,8 +442,9 @@ jobs:
               export MOUSTACHE_VIEW=./.circleci/assets/gh_cli/pr_notification.view.json
               export MOUSTACHE_TEMPLATE=./.circleci/assets/gh_cli/pr_notification.template.md
               export MOUSTACHE_OUTPUT=./.circleci/assets/gh_cli/pr_notification.output.md
-              ls -alh  $MOUSTACHE_VIEW $MOUSTACHE_TEMPLATE $MOUSTACHE_OUTPUT
+              ls -alh  $MOUSTACHE_VIEW $MOUSTACHE_TEMPLATE
               mustache $MOUSTACHE_VIEW $MOUSTACHE_TEMPLATE $MOUSTACHE_OUTPUT
+              ls -alh  $MOUSTACHE_OUTPUT
               echo ' ------------------------------------------------------- '
               echo "   "
               echo "   Rendered PR message with Mustache is :"

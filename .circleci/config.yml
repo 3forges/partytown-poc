@@ -489,6 +489,20 @@ jobs:
               echo "   Discord Notifications"
               echo "   https://discord.com/developers/docs/resources/webhook#execute-webhook-jsonform-params"
               echo ' ------------------------------------------------------- '
+              echo ' ------------------------------------------------------- '
+              echo " PR_BRANCH_NAME = [${PR_BRANCH_NAME}]"
+              export PR_BRANCH_NAME_SANITIZED=$(echo "${PR_BRANCH_NAME}" | sed "s#/#_#g")
+              echo " PR_BRANCH_NAME_SANITIZED = [${PR_BRANCH_NAME_SANITIZED}]"
+              echo ' ------------------------------------------------------- '
+              export SURGE_DEPLOYMENT_URL="https://justincurieux_${PR_BRANCH_NAME_SANITIZED}.surge.sh"w
+              sed -i "s#SURGE_DEPLOYMENT_URL_PLACEHOLDER#${SURGE_DEPLOYMENT_URL}#g" ./.circleci/assets/discord/notification.payload.json
+              sed -i "s#PR_GIT_BRANCH_PLACEHOLDER#${PR_BRANCH_NAME}#g" ./.circleci/assets/discord/notification.payload.json
+              echo ' ------------------------------------------------------- '
+              echo '    content of notification.payload.json after sed ------------------------------------------- '
+              echo ' ------------------------------------------------------- '
+              cat -n ./.circleci/assets/discord/notification.payload.json
+              echo ' ------------------------------------------------------- '
+              
               # export RAW_DISCORD_WEBHOOK_URL=https://discordapp.com/api/webhooks/1143716758486786112/czV9yYYh7NoB9ZUm-Sr5kTyMMqyfmd1GtW0Qio5t3SCkMTFpcbNJNNp1ZjUGOFaVSfp_
               echo "DISCORD_WEBHOOK_URL = [${DISCORD_WEBHOOK_URL}]"
               # export DISCORD_WEBHOOK_URL=${RAW_DISCORD_WEBHOOK_URL}

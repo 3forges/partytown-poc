@@ -469,7 +469,11 @@ jobs:
               echo "   Github Pull Request Notification"
               echo "   "
               echo ' ------------------------------------------------------- '
-
+              export PNPM_HOME="/root/.local/share/pnpm"
+              case ":$PATH:" in
+              *":$PNPM_HOME:"*) ;;
+              *) export PATH="$PNPM_HOME:$PATH" ;;
+              esac
               echo ' ------------------------------------------------------- '
               echo "   "
               echo "   Render PR message with Mustache"

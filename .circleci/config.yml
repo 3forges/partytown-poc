@@ -214,8 +214,8 @@ jobs:
       # CI_WORKSPACE_ROOT: /.ci.workspace
       CI_WORKSPACE_ROOT: /root/project
       # ASTRO_BUILD_DIR: /<< pipeline.parameters.ci_workspace_root >>/workspace/dist/
-      SURGE_USER: $SURGE_USER
-      SURGE_SECRET: $SURGE_SECRET
+      # SURGE_USER: $SURGE_USER
+      # SURGE_SECRET: $SURGE_SECRET
     steps:
       # <<: *pokus-common-steps
       - run:

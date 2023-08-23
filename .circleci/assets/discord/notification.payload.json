@@ -9,7 +9,7 @@
     "author": {
       "name": "monstercat is now streaming",
       "url": "https://www.twitch.tv/monstercat",
-      "icon_url": "https://avatar-resolver.vercel.app/twitch/monstercat"
+      "icon_url": "https://picsum.photos/id/856/64/64"
     },
     "fields": [
       {
@@ -23,6 +23,6 @@
         "inline": true
       }
     ],
-    "image": { "url": "https://fastly.picsum.photos/id/933/200/120" }
+    "image": { "url": "https://picsum.photos/id/933/200/120" }
   }]
 }

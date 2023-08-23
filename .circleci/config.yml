@@ -328,7 +328,7 @@ jobs:
       SHELL: /bin/bash
       # BASH_ENV: /home/circleci/.profile
       MUSTACHE_VERSION: 4.2.0
-      DISCORD_WEBHOOK_URL: $DISCORD_WEBHOOK_URL
+      # DISCORD_WEBHOOK_URL: $DISCORD_WEBHOOK_URL
       GITHUB_CLI_PAT: $GITHUB_CLI_PAT
     steps:
       # <<: *pokus-common-steps

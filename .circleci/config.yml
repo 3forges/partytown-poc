@@ -429,7 +429,7 @@ jobs:
               echo "   "
               echo ' ------------------------------------------------------- '
       # --- 
-      #  https://circleci.com/developer/orbs/orb/antonioned/discord
+      # - https://circleci.com/developer/orbs/orb/antonioned/discord
       - discord:
           webhook: $DISCORD_WEBHOOK_URL
           success_message: 'The Pull Request was successfully deployed! :dash: '

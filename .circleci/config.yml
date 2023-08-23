@@ -286,7 +286,17 @@ jobs:
             # export SURGE_USER='jean.baptiste.lasselle.pokus@gmail.com'
             sed -i "s~SURGE_USER_PLACEHODER~${SURGE_USER}~g" ./.generated.netrc
             sed -i "s~SURGE_SECRET_PLACEHODER~${SURGE_SECRET}~g" ./.generated.netrc
-            bash -c 'cat ./.generated.netrc | tee -a ~/.netrc'
+            echo "DEBUG PIPELINE JBL"
+            mkdir -p ${HOME}
+            mkdir -p /home/$(whoami)
+            echo " whoami [$(whoami)]"
+            echo " HOME = [${HOME}]"
+            echo " pwd = [$(pwd)]"
+            echo " pwd = [$(pwd)]"
+            
+            
+            # cat ./.generated.netrc | tee -a ~/.netrc
+            cat ./.generated.netrc | tee -a ${HOME}/.netrc
             echo ' ------------------------------------------------------- '
             echo "   "
             echo "surge whoami"

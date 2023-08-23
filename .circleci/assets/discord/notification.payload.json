@@ -43,12 +43,6 @@
           "style": 1,
           "custom_id": "deployment",
           "url": "https://justincurieux_develop.surge.sh"
-        },
-        {
-          "type": 5,
-          "label": "Select a user",
-          "style": 1,
-          "custom_id": "select_a_user_choice"
         }
       ]
     }

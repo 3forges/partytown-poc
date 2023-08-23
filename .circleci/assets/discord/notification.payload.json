@@ -10,6 +10,16 @@
   "username": "curieusementBot",
   "embeds": [
     {
+      
+      "components": [
+        {
+          "type": 2,
+          "label": "View the deployment!",
+          "style": 1,
+          "custom_id": "deployment",
+          "url": "https://justincurieux_develop.surge.sh"
+        }
+      ],
       "color": 9520895,
       "author": {
         "name": "monstercat is now streaming",
@@ -31,15 +41,6 @@
       "image": {
         "url": "https://picsum.photos/id/933/200/120"
       }
-    }
-  ],
-  "components": [
-    {
-      "type": 2,
-      "label": "View the deployment!",
-      "style": 1,
-      "custom_id": "deployment",
-      "url": "https://justincurieux_develop.surge.sh"
     }
   ]
 }

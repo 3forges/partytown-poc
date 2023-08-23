@@ -321,6 +321,7 @@ jobs:
           command: |
             echo ' ------------------------------------------------------- '
             echo "   "
+            ls -alh ${ASTRO_BUILD_DIR} || true
             surge ${ASTRO_BUILD_DIR} "https://justincurieux_${PR_BRANCH_NAME}.surge.sh" --token $SURGE_SECRET
             echo "   "
             echo ' ------------------------------------------------------- '

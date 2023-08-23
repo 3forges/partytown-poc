@@ -1,5 +1,5 @@
 {
-  "content": " ## :dash: A new Deployment is ready ! :book: :sparkles: \n \n @jeanbaptiste @jeanbaptiste#9951 @everyone @&justin <@jeanbaptiste> @&justin \n \n :book: _**[View the deployed Website version](https://justin_curieux_develop.surge.sh)**_ \n \n <a href='https://justin_curieux_develop.surge.sh'> <img src='https://img.shields.io/badge/justincurieux-deployment%20on%20surge-D080F8?style=for-the-badge&logo=rocket&logoColor=white' /> </a> \n",
+  "content": " ## :dash: A new Deployment is ready ! :book: :sparkles: \n \n @jeanbaptiste @jeanbaptiste#9951 @everyone @&justin <@jeanbaptiste> @&justin \n \n :book: _**[View the deployed Website version](https://justin_curieux_develop.surge.sh)**_ \n \n ![markdown image](https://i.imgur.com/4M34hi2.png) \n ",
   "allowed_mentions": {
     "parse": [
       "everyone",

@@ -306,7 +306,7 @@ jobs:
             ls -alh ~/.netrc || true
             ls -alh /root/.netrc || true
             # export NETRC=/root/.netrc
-            surge token --token $SURGE_SECRET"
+            surge token --token $SURGE_SECRET
             echo ' ------------------------------------------------------- '
             echo "   "
             echo "surge whoami --token $SURGE_SECRET"

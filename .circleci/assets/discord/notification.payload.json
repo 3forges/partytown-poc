@@ -3,5 +3,26 @@
   "allowed_mentions": {
     "parse": ["everyone", "roles", "users"]
   },
-  "username": "curieusementBot"
+  "username": "curieusementBot",
+  "embeds": [{
+    "color": 9520895,
+    "author": {
+      "name": "monstercat is now streaming",
+      "url": "https://www.twitch.tv/monstercat",
+      "icon_url": "https://avatar-resolver.vercel.app/twitch/monstercat"
+    },
+    "fields": [
+      {
+        "name": ":joystick: Game",
+        "value": "<<<Age of Empire 2>>>\u200B",
+        "inline": true
+      },
+      {
+        "name": ":busts_in_silhouette: Viewers",
+        "value": "michel,bernard,jacques,robert",
+        "inline": true
+      }
+    ],
+    "image": { "url": "https://api.twitch.tv/monstercat/streams" }
+  }]
 }

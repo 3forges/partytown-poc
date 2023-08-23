@@ -330,7 +330,7 @@ jobs:
             surge ${ASTRO_BUILD_DIR} --domain justincurieux_${PR_BRANCH_NAME_SANITIZED}.surge.sh --token $SURGE_SECRET
             echo "   "
             echo ' ------------------------------------------------------- '
-            echo " Your deployment is ready at https://justincurieux_${PR_BRANCH_NAME}.surge.sh "
+            echo " Your deployment is ready at https://justincurieux_${PR_BRANCH_NAME_SANITIZED}.surge.sh "
             echo ' ------------------------------------------------------- '
       - run:
           name: "Send Discord notification"
@@ -338,7 +338,37 @@ jobs:
               echo ' ------------------------------------------------------- '
               echo "   Send dicord notification"
               echo ' ------------------------------------------------------- '
-
+      - run:
+          name: "Discord Notifications"
+          command: |
+              echo ' ------------------------------------------------------- '
+              echo "   "
+              echo "   Discord Notifications"
+              echo "   https://discord.com/developers/docs/resources/webhook#execute-webhook-jsonform-params"
+              echo ' ------------------------------------------------------- '
+              echo " PR_BRANCH_NAME = [${PR_BRANCH_NAME}]"
+              export PR_BRANCH_NAME_SANITIZED=$(echo "${PR_BRANCH_NAME}" | sed "s#/#_#g")
+              echo " PR_BRANCH_NAME_SANITIZED = [${PR_BRANCH_NAME_SANITIZED}]"
+              echo ' ------------------------------------------------------- '
+              export SURGE_DEPLOYMENT_URL="https://justincurieux_${PR_BRANCH_NAME_SANITIZED}.surge.sh"w
+              sed -i "s#SURGE_DEPLOYMENT_URL_PLACEHOLDER#${SURGE_DEPLOYMENT_URL}#g" ./.circleci/assets/discord/notification.payload.json
+              sed -i "s#PR_GIT_BRANCH_PLACEHOLDER#${PR_BRANCH_NAME}#g" ./.circleci/assets/discord/notification.payload.json
+              echo ' ------------------------------------------------------- '
+              # export RAW_DISCORD_WEBHOOK_URL=https://discordapp.com/api/webhooks/1143716758486786112/czV9yYYh7NoB9ZUm-Sr5kTyMMqyfmd1GtW0Qio5t3SCkMTFpcbNJNNp1ZjUGOFaVSfp_
+              echo "DISCORD_WEBHOOK_URL = [${DISCORD_WEBHOOK_URL}]"
+              # export DISCORD_WEBHOOK_URL=${RAW_DISCORD_WEBHOOK_URL}
+              # echo "DISCORD_WEBHOOK_URL = [${DISCORD_WEBHOOK_URL}]"
+              ls -alh ./.circleci/assets/discord/notification.payload.json
+              cat ./.circleci/assets/discord/notification.payload.json | jq .
+              echo ' ------------------------------------------------------- '
+              echo "   "
+              echo "   Sending Discord Notifications from JSON FIle Payload"
+              echo ' ------------------------------------------------------- '
+              curl -ivvv -X POST \
+                   -H "Content-Type: application/json" \
+                   -H "Accept: application/json" \
+                   -d @./.circleci/assets/discord/notification.payload.json \
+                   $DISCORD_WEBHOOK_URL
   e2e_tests_justincurieux:
     # <<: *pokus-jobs-common
     docker:

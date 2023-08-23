@@ -425,8 +425,8 @@ jobs:
       - discord/status:
           webhook: $DISCORD_WEBHOOK_URL
           success_message: 'The Pull Request was successfully deployed! :dash: '
-          failure_message: 'Ooops! The Pull Request deployent failed... '
-          mentions: '@jeanbaptiste'
+          # failure_message: 'Ooops! The Pull Request deployent failed... '
+          mentions: '@jeanbaptiste,@everyone'
       - run:
           name: "Discord Notifications"
           command: |

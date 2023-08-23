@@ -409,6 +409,7 @@ jobs:
               mkdir -p ${HOME}
               touch $BASH_ENV
               echo 'export SHELL=/bin/bash' >> "$BASH_ENV"
+              echo "export PR_BRANCH_NAME=${CIRCLE_BRANCH}" >> "$BASH_ENV"
               echo 'export GIT_SHA1="$CIRCLE_SHA1"' >> "$BASH_ENV"
               export ASTRO_BUILD_DIR="${CI_WORKSPACE_ROOT}/workspace/dist"
               echo "export ASTRO_BUILD_DIR=${ASTRO_BUILD_DIR}" >> "$BASH_ENV"

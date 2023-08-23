@@ -420,6 +420,13 @@ jobs:
               echo "   Deploy All Tests Reports as static website"
               echo "   "
               echo ' ------------------------------------------------------- '
+      # --- 
+      # - https://circleci.com/developer/orbs/orb/antonioned/discord
+      - discord/status:
+          webhook: $DISCORD_WEBHOOK_URL
+          success_message: 'The Pull Request was successfully deployed! :dash: '
+          failure_message: 'Ooops! The Pull Request deployent failed... '
+          mentions: '@jeanbaptiste'
       - run:
           name: "Discord Notifications"
           command: |
@@ -451,16 +458,7 @@ jobs:
                    -H "Content-Type: application/json" \
                    -d "${DSCRD_PAYLOAD}" \
                    $DISCORD_WEBHOOK_URL
-              
-
                    
-      # --- 
-      # - https://circleci.com/developer/orbs/orb/antonioned/discord
-      # - discord/status:
-      #     webhook: $DISCORD_WEBHOOK_URL
-      #     success_message: 'The Pull Request was successfully deployed! :dash: '
-      #     failure_message: 'Ooops! The Pull Request deployent failed... '
-      #     mentions: '@jeanbaptiste#9951'
       - run:
           name: "Github Pull Request Notification"
           command: |

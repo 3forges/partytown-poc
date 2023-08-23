@@ -433,10 +433,6 @@ jobs:
               export DISCORD_WEBHOOK_URL=${RAW_DISCORD_WEBHOOK_URL}
               ls -alh ./.circleci/assets/discord/notification.payload.json
               cat ./.circleci/assets/discord/notification.payload.json | jq .
-              # curl -X POST \
-              #      -H 'Content-Type: application/x-www-form-urlencoded' \
-              #      -d @./.circleci/assets/discord/notification.payload.json \
-              #      $DISCORD_WEBHOOK_URL
               echo ' ------------------------------------------------------- '
               echo "   "
               echo "   Try sending Discord Notifications from JSON FIle Payload"
@@ -455,11 +451,7 @@ jobs:
                    -d "${DSCRD_PAYLOAD}" \
                    $DISCORD_WEBHOOK_URL
               
-              export POKUS_NOTIF_MSG=' @jeanbaptiste#9951 :dash: A new {{project}} Deployment is ready ! :sparkles:'
-              curl -X POST \
-                   -H 'Content-Type: application/x-www-form-urlencoded' \
-                   -d "content=${POKUS_NOTIF_MSG}&allowed_mentions=true&username=curieusementBot" \
-                   $DISCORD_WEBHOOK_URL
+
                    
       # --- 
       # - https://circleci.com/developer/orbs/orb/antonioned/discord

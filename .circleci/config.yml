@@ -325,6 +325,7 @@ jobs:
       PNPM_VERSION: 7.5.1
       SHELL: /bin/bash
       # BASH_ENV: /home/circleci/.profile
+      MUSTACHE_VERSION: 4.2.0
     steps:
       # <<: *pokus-common-steps
       - run:
@@ -421,6 +422,54 @@ jobs:
               echo "   Discord Notifiations"
               echo "   "
               echo ' ------------------------------------------------------- '
+      - run:
+          name: "Github Pull Request Notification"
+          command: |
+              echo ' ------------------------------------------------------- '
+              echo "   "
+              echo "   Github Pull Request Notification"
+              echo "   "
+              echo ' ------------------------------------------------------- '
+
+              echo ' ------------------------------------------------------- '
+              echo "   "
+              echo "   Render PR message with Mustache"
+              echo "   "
+              echo ' ------------------------------------------------------- '
+              # export MUSTACHE_VERSION=4.2.0
+              pnpm add --global mustache@$MUSTACHE_VERSION
+              # prepare PR message
+              export MOUSTACHE_VIEW=./.circleci/assets/gh_cli/pr_notification.view.json
+              export MOUSTACHE_TEMPLATE=./.circleci/assets/gh_cli/pr_notification.template.md
+              export MOUSTACHE_OUTPUT=./.circleci/assets/gh_cli/pr_notification.output.md
+              ls -alh  $MOUSTACHE_VIEW $MOUSTACHE_TEMPLATE $MOUSTACHE_OUTPUT
+              mustache $MOUSTACHE_VIEW $MOUSTACHE_TEMPLATE $MOUSTACHE_OUTPUT
+              echo ' ------------------------------------------------------- '
+              echo "   "
+              echo "   Rendered PR message with Mustache is :"
+              echo "   "
+              ls -alh ${MOUSTACHE_OUTPUT}
+              cat ${MOUSTACHE_OUTPUT}
+              echo ' ------------------------------------------------------- '
+              echo ' ------------------------------------------------------- '
+              echo "   "
+              echo "   Github CLI LOGIN"
+              echo "   "
+              echo ' ------------------------------------------------------- '
+              export DONTSHOWME=$(echo ${GITHUB_CLI_PAT} > ./.bot.github.pat.token)
+              gh auth login --with-token < ./.bot.github.pat.token
+
+              # --- 
+              # Gihub Personal Access Token (P.A.T.)
+              # Token scopes: admin:repo_hook, project, read:gpg_key, read:org, read:public_key, read:ssh_signing_key, repo, user, workflow, write:discussion, write:packages
+              gh auth status
+              
+
+              # --- 
+              # https://cli.github.com/manual/gh_pr_comment
+              # gh pr comment [<number> | <url> | <branch>] [flags]
+              export POKUS_PULL_REQUEST_NUMBER=7
+              gh pr comment ${POKUS_PULL_REQUEST_NUMBER} -F ${MOUSTACHE_OUTPUT}
 
   release_deployment:
     # <<: *pokus-jobs-common

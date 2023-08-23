@@ -438,7 +438,7 @@ jobs:
               echo "   "
               echo "   Try sending Discord Notifications from JSON FIle Payload"
               echo ' ------------------------------------------------------- '
-              curl -X POST \
+              curl -ivvv -X POST \
                    -H "Content-Type: application/json" \
                    -d @./.circleci/assets/discord/notification.payload.json \
                    $DISCORD_WEBHOOK_URL
@@ -447,7 +447,7 @@ jobs:
               echo "   Try sending Discord Notifications from JSON Raw String Payload"
               echo ' ------------------------------------------------------- '
               export DSCRD_PAYLOAD=$(cat ./.circleci/assets/discord/notification.payload.json)
-              curl -X POST \
+              curl -ivvv -X POST \
                    -H "Content-Type: application/json" \
                    -d "${DSCRD_PAYLOAD}" \
                    $DISCORD_WEBHOOK_URL

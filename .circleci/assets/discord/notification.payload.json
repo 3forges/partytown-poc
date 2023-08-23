@@ -1,1 +1,7 @@
-{"content": "@everyone <@&justin> @jeanbaptiste  :dash: A new {{project}} Deployment is ready ! :sparkles:", "allowed_mentions": { "roles": ["justin"]  }, "username": "curieusementBot" }
+{
+  "content": "@everyone @justin @jeanbaptiste  :dash: A new Deployment is ready ! :sparkles:",
+  "allowed_mentions": [
+    "roles", "users", "everyone"
+  ],
+  "username": "curieusementBot"
+}

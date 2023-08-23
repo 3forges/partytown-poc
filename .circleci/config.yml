@@ -325,6 +325,7 @@ jobs:
             # echo justincurieux_${PR_BRANCH_NAME}.surge.sh > CNAME
             ls -alh ${ASTRO_BUILD_DIR} || true
             echo " PR_BRANCH_NAME = [${PR_BRANCH_NAME}]"
+            export PR_BRANCH_NAME_SANITIZED=$(echo "${PR_BRANCH_NAME}" | sed "s#/#_#g")
             surge ${ASTRO_BUILD_DIR} --domain justincurieux_${PR_BRANCH_NAME}.surge.sh --token $SURGE_SECRET
             echo "   "
             echo ' ------------------------------------------------------- '

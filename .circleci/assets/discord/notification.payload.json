@@ -19,7 +19,7 @@
       },
       "fields": [
         {
-          "name": ":octocat: Git branch",
+          "name": ":rocket: Git branch",
           "value": "PR_GIT_BRANCH_PLACEHOLDER\u200B",
           "inline": true
         },

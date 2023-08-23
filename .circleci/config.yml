@@ -1,6 +1,9 @@
 
 version: "2.1"
 
+orbs:
+  discord: antonioned/discord@0.1.0
+
 parameters:
   dockerize_me:
     type: boolean
@@ -326,6 +329,7 @@ jobs:
       SHELL: /bin/bash
       # BASH_ENV: /home/circleci/.profile
       MUSTACHE_VERSION: 4.2.0
+      DISCORD_WEBHOOK_URL: $DISCORD_WEBHOOK_URL
     steps:
       # <<: *pokus-common-steps
       - run:
@@ -417,13 +421,20 @@ jobs:
               echo "   "
               echo ' ------------------------------------------------------- '
       - run:
-          name: "Discord Notifiations"
+          name: "Discord Notifications"
           command: |
               echo ' ------------------------------------------------------- '
               echo "   "
-              echo "   Discord Notifiations"
+              echo "   Discord Notifications"
               echo "   "
               echo ' ------------------------------------------------------- '
+      # --- 
+      #  https://circleci.com/developer/orbs/orb/antonioned/discord
+      - discord:
+          webhook: $DISCORD_WEBHOOK_URL
+          success_message: 'The Pull Request was successfully deployed! :dash: '
+          failure_message: 'Ooops! The Pull Request deployent failed... '
+          mentions: '@jeanbaptiste#9951'
       - run:
           name: "Github Pull Request Notification"
           command: |

@@ -77,5 +77,30 @@
         }
       ]
     }
+  ],
+  "embeds": [
+    {
+      "color": 9520895,
+      "author": {
+        "name": "monstercat is now streaming",
+        "url": "https://www.twitch.tv/monstercat",
+        "icon_url": "https://picsum.photos/id/24/64/64"
+      },
+      "fields": [
+        {
+          "name": ":joystick: Game",
+          "value": "Age of Empire 2\u200B",
+          "inline": true
+        },
+        {
+          "name": ":busts_in_silhouette: Viewers",
+          "value": "1427",
+          "inline": true
+        }
+      ],
+      "image": {
+        "url": "https://picsum.photos/id/933/200/120"
+      }
+    }
   ]
 }

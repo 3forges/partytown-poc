@@ -430,7 +430,7 @@ jobs:
               echo ' ------------------------------------------------------- '
       # --- 
       # - https://circleci.com/developer/orbs/orb/antonioned/discord
-      - discord:
+      - discord/status:
           webhook: $DISCORD_WEBHOOK_URL
           success_message: 'The Pull Request was successfully deployed! :dash: '
           failure_message: 'Ooops! The Pull Request deployent failed... '

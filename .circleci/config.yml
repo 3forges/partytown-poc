@@ -447,6 +447,7 @@ jobs:
               echo ' ------------------------------------------------------- '
               curl -ivvv -X POST \
                    -H "Content-Type: application/json" \
+                   -H "Accept: application/json" \
                    -d @./.circleci/assets/discord/notification.payload.json \
                    $DISCORD_WEBHOOK_URL
               echo ' ------------------------------------------------------- '
@@ -456,6 +457,7 @@ jobs:
               export DSCRD_PAYLOAD=$(cat ./.circleci/assets/discord/notification.payload.json)
               curl -ivvv -X POST \
                    -H "Content-Type: application/json" \
+                   -H "Accept: application/json" \
                    -d "${DSCRD_PAYLOAD}" \
                    $DISCORD_WEBHOOK_URL
                    

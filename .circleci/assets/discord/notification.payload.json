@@ -1,4 +1,8 @@
 {
   "content": "@everyone @justin @jeanbaptiste  :dash: A new Deployment is ready ! :sparkles:",
+  "allowed_mentions": {
+    "parse": ["everyone", "roles"],
+    "users": ["jeanbaptiste", "jexsitepas"]
+  },
   "username": "curieusementBot"
 }

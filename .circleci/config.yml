@@ -496,7 +496,7 @@ jobs:
               echo ' ------------------------------------------------------- '
               export SURGE_DEPLOYMENT_URL="https://justincurieux_${PR_BRANCH_NAME_SANITIZED}.surge.sh"w
               sed -i "s#SURGE_DEPLOYMENT_URL_PLACEHOLDER#${SURGE_DEPLOYMENT_URL}#g" ./.circleci/assets/discord/notification.payload.json
-              sed -i "s#PR_GIT_BRANCH_PLACEHOLDER#${PR_BRANCH_NAME}#g" ./.circleci/assets/discord/notification.payload.json
+              sed -i "s#PR_GIT_BRANCH_PLACEHOLDER#${PR_BRANCH_NAME_SANITIZED}#g" ./.circleci/assets/discord/notification.payload.json
               echo ' ------------------------------------------------------- '
               echo '    content of notification.payload.json after sed ------------------------------------------- '
               echo ' ------------------------------------------------------- '

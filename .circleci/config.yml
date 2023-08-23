@@ -297,8 +297,9 @@ jobs:
             
             
             # cat ./.generated.netrc | tee -a ~/.netrc
-            cat ./.generated.netrc | tee ${HOME}/.netrc
-            cat ./.generated.netrc | tee ~/.netrc
+            # cat ./.generated.netrc | tee ${HOME}/.netrc
+            # cat ./.generated.netrc | tee ~/.netrc
+            rm /root/.netrc || true
             cat ./.generated.netrc | tee /root/.netrc
             ls -alh ~/.netrc || true
             ls -alh /root/.netrc || true

@@ -216,6 +216,7 @@ jobs:
       # ASTRO_BUILD_DIR: /<< pipeline.parameters.ci_workspace_root >>/workspace/dist/
       # SURGE_USER: $SURGE_USER
       # SURGE_SECRET: $SURGE_SECRET
+      NETRC: /root/.netrc
     steps:
       # <<: *pokus-common-steps
       - run:
@@ -292,6 +293,7 @@ jobs:
             mkdir -p /root/
             echo " whoami [$(whoami)]"
             echo " HOME = [${HOME}]"
+            echo " NETRC = [${NETRC}]"
             echo " pwd = [$(pwd)]"
             echo " pwd = [$(pwd)]"
             
@@ -303,6 +305,7 @@ jobs:
             cat ./.generated.netrc | tee /root/.netrc
             ls -alh ~/.netrc || true
             ls -alh /root/.netrc || true
+            # export NETRC=/root/.netrc
             surge token --token $SURGE_SECRET"
             echo ' ------------------------------------------------------- '
             echo "   "

@@ -624,7 +624,7 @@ jobs:
               # export POKUS_PULL_REQUEST_NUMBER=1
               echo "   CIRCLE_PR_NUMBER=[${CIRCLE_PR_NUMBER}]"
               export POKUS_PULL_REQUEST_NUMBER=$CIRCLE_PR_NUMBER
-              gh pr comment ${POKUS_PULL_REQUEST_NUMBER} -F ${MOUSTACHE_OUTPUT}
+              gh pr comment ${POKUS_PULL_REQUEST_NUMBER} -F ${MOUSTACHE_OUTPUT} || true
 
   release_deployment:
     # <<: *pokus-jobs-common

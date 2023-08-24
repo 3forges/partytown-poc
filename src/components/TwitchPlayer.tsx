@@ -49,7 +49,8 @@ export function TwitchPlayer() {
 
     return (
         <>
-            <div id="twitch-embed" class="absolute grid justify-items-center items-center min-w-[80%] min-h-[50%] z-5"></div>
+            <div id="twitch-embed" class="absolute grid justify-items-center items-center min-w-[80%] min-h-[50%] z-5">
+            </div>
             {
                 h(
                     'script',

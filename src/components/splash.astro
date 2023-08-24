@@ -4,7 +4,7 @@
 //import astronautImage from "~/assets/astronaut.png";
 //import HeroImage from "~/components/hero-image.astro";
 import Starfield from "./starfield.astro";
-import { TwitchPlayer } from "~/components/TwitchPlayer";
+import TwitchPlayer from "~/components/TwitchPlayer.astro";
 import GitHubCorner from "./github-corner.astro";
 
 //const widths = [450, 800];
@@ -15,7 +15,7 @@ import GitHubCorner from "./github-corner.astro";
   <Starfield />
   <GitHubCorner />
   <div class="relative grid h-full place-items-center sm:grid-cols-1">
-    <TwitchPlayer client:only="preact"/>
+    <TwitchPlayer />
    </div>
 </section>
 

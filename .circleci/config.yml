@@ -256,10 +256,10 @@ jobs:
             # install surge
             source $BASH_ENV
             pnpm add -g surge
-            # bash -c 'pnpm add -g surge'
+            pnpm add -g vercel
             pnpm --version
-            # bash -c 'pnpm --version'
             surge --version
+            vercel --version
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
           # at: /${CI_WORKSPACE_ROOT}/workspace/dist

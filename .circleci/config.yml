@@ -390,11 +390,17 @@ jobs:
               echo " PR_BRANCH_NAME_SANITIZED = [${PR_BRANCH_NAME_SANITIZED}]"
               echo ' ------------------------------------------------------- '
               export VERCEL_DEPLOYMENT_URL=$(cat ./VERCEL_DEPLOYMENT.out | grep vercel | awk '{print $1}')
-              echo " VERCEL_DEPLOYMENT_URL=${VERCEL_DEPLOYMENT_URL}"
+              echo " VERCEL_DEPLOYMENT_URL=[${VERCEL_DEPLOYMENT_URL}]"
+              echo " CIRCLE_BUILD_URL=[${CIRCLE_BUILD_URL}]"
+              echo " CIRCLE_SHA1=[${CIRCLE_SHA1}]"
+              echo " CIRCLE_REPOSITORY_URL=[${CIRCLE_REPOSITORY_URL}]"
               export SURGE_DEPLOYMENT_URL="https://justincurieux_${PR_BRANCH_NAME_SANITIZED}.surge.sh"
               sed -i "s#VERCEL_DEPLOYMENT_URL_PLACEHOLDER#${VERCEL_DEPLOYMENT_URL}#g" ./.circleci/assets/discord/notification.payload.json
               sed -i "s#SURGE_DEPLOYMENT_URL_PLACEHOLDER#${SURGE_DEPLOYMENT_URL}#g" ./.circleci/assets/discord/notification.payload.json
               sed -i "s#PR_GIT_BRANCH_PLACEHOLDER#${PR_BRANCH_NAME}#g" ./.circleci/assets/discord/notification.payload.json
+              sed -i "s#CIRCLE_BUILD_URL_PLACEHOLDER#${CIRCLE_BUILD_URL}#g" ./.circleci/assets/discord/notification.payload.json
+              sed -i "s#CIRCLE_SHA1_PLACEHOLDER#${CIRCLE_SHA1}#g" ./.circleci/assets/discord/notification.payload.json
+              sed -i "s#CIRCLE_REPOSITORY_URL_PLACEHOLDER#${CIRCLE_REPOSITORY_URL}#g" ./.circleci/assets/discord/notification.payload.json
               echo ' ------------------------------------------------------- '
               echo '   content of notification.payload.json after sed ------------------------------------------- '
               echo ' ------------------------------------------------------- '

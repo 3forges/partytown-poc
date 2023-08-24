@@ -29,17 +29,27 @@
           "inline": true
         },
         {
-          "name": "To seperate two lines of toasts/badges Use `\"inline\": true` parameter, if you want to display fields in the same line.",
-          "value": "okay..."
-        },
-        {
           "name": ":joystick: Git branch",
           "value": "PR_GIT_BRANCH_PLACEHOLDER\u200B",
           "inline": true
         },
         {
-          "name": ":busts_in_silhouette: Commit Hash",
-          "value": "GIT_COMMIT_HASH_PLACEHOLDER\u2D0B",
+          "name": "To seperate two lines of toasts/badges Use `\"inline\": true` parameter, if you want to display fields in the same line.",
+          "value": "okay..."
+        },
+        {
+          "name": ":busts_in_silhouette: Circle CI Pipeline",
+          "value": "CIRCLE_BUILD_URL_PLACEHOLDER\u2D0B",
+          "inline": true
+        },
+        {
+          "name": ":busts_in_silhouette: Git Commit",
+          "value": "CIRCLE_SHA1_PLACEHOLDER\u2D0B",
+          "inline": true
+        },
+        {
+          "name": ":busts_in_silhouette: Github Repo",
+          "value": "CIRCLE_REPOSITORY_URL_PLACEHOLDER\u2D0B",
           "inline": true
         }
       ],

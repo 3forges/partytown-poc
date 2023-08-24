@@ -273,6 +273,7 @@ jobs:
             # echo justincurieux_${PR_BRANCH_NAME}.surge.sh > CNAME
             ls -alh ${ASTRO_BUILD_DIR} || true
             echo 'embed.twitch.tv' | tee -a ${ASTRO_BUILD_DIR}/CORS
+            echo '*.twitch.tv' | tee -a ${ASTRO_BUILD_DIR}/CORS
             echo "   "
             echo ' ------------------------------------------------------- '
             echo " Your deployment will allow CORS for : "

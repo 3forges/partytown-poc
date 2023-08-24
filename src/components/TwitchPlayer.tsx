@@ -7,7 +7,7 @@ export function TwitchPlayer() {
      */
     const chatLayout = true               // layout option [video|video-and-chat]
     const channel = 'radiojaune'         // your channel
-    const webUrls = '"justincurieux_feature_boris_twitch.surge.sh", "othersite.example.com"'   // your network
+    const webUrls = '"justincurieux_feature_boris_twitch.surge.sh"'   // your network
     const autoplay = true              // Twitch.Embed.VIDEO_READY action
     const verbose = true              // console feedback on|off
 

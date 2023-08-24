@@ -243,7 +243,7 @@ jobs:
           name: "Install CI Job dependencies"
           command: |
             source $BASH_ENV
-            apt-get update -y && apt-get install -y  bash curl jq wget
+            apt-get update -y && apt-get install -y  bash curl jq wget gh
             # install pnpm
             bash -c 'curl -fsSL https://get.pnpm.io/install.sh | sh -'
             # PNPM_VERSION: 7.5.1
@@ -364,7 +364,7 @@ jobs:
             export VERCEL_DEPLOYMENT_DIR=${VERCEL_DEPLOYMENT_DIR}/justincurieux-${PR_BRANCH_NAME_SANITIZED}
             echo " VERCEL_DEPLOYMENT_DIR = [${VERCEL_DEPLOYMENT_DIR}]"
             cp -fr ${ASTRO_BUILD_DIR}/* ${VERCEL_DEPLOYMENT_DIR}
-            vercel deploy ${VERCEL_DEPLOYMENT_DIR}/justincurieux-${PR_BRANCH_NAME_SANITIZED} --token ${VERCEL_TOKEN} --yes > ./VERCEL_DEPLOYMENT.out
+            vercel deploy ${VERCEL_DEPLOYMENT_DIR} --token ${VERCEL_TOKEN} --yes > ./VERCEL_DEPLOYMENT.out
             export VERCEL_DEPLOYMENT_URL=$(cat ./VERCEL_DEPLOYMENT.out | grep vercel | awk '{print $1}')
             echo " VERCEL_DEPLOYMENT_URL=${VERCEL_DEPLOYMENT_URL}"
             echo "   "
@@ -423,6 +423,66 @@ jobs:
                    -H "Accept: application/json" \
                    -d @./.circleci/assets/discord/notification.payload.json \
                    $DISCORD_WEBHOOK_URL
+      - run:
+          name: "Github Pull Request Notification"
+          command: |
+              echo ' ------------------------------------------------------- '
+              echo "   "
+              echo "   Github Pull Request Notification"
+              echo "   "
+              echo ' ------------------------------------------------------- '
+              export PNPM_HOME="/root/.local/share/pnpm"
+              case ":$PATH:" in
+              *":$PNPM_HOME:"*) ;;
+              *) export PATH="$PNPM_HOME:$PATH" ;;
+              esac
+              echo ' ------------------------------------------------------- '
+              echo "   "
+              echo "   Render PR message with Mustache"
+              echo "   "
+              echo ' ------------------------------------------------------- '
+              # export MUSTACHE_VERSION=4.2.0
+              pnpm add --global mustache@$MUSTACHE_VERSION
+              # prepare PR message
+              export MOUSTACHE_VIEW=./.circleci/assets/gh_cli/pr_notification.view.json
+              export MOUSTACHE_TEMPLATE=./.circleci/assets/gh_cli/pr_notification.template.md
+              export MOUSTACHE_OUTPUT=./.circleci/assets/gh_cli/pr_notification.output.md
+              ls -alh  $MOUSTACHE_VIEW $MOUSTACHE_TEMPLATE
+              mustache $MOUSTACHE_VIEW $MOUSTACHE_TEMPLATE $MOUSTACHE_OUTPUT
+              ls -alh  $MOUSTACHE_OUTPUT
+              echo ' ------------------------------------------------------- '
+              echo "   "
+              echo "   Rendered PR message with Mustache is :"
+              echo "   "
+              ls -alh ${MOUSTACHE_OUTPUT}
+              cat ${MOUSTACHE_OUTPUT}
+              echo ' ------------------------------------------------------- '
+              echo ' ------------------------------------------------------- '
+              echo "   "
+              echo "   Github CLI LOGIN"
+              echo "   "
+              echo ' ------------------------------------------------------- '
+              export DONTSHOWME=$(echo ${GITHUB_CLI_PAT} > ./.bot.github.pat.token)
+              gh auth login --with-token < ./.bot.github.pat.token
+
+              # --- 
+              # Gihub Personal Access Token (P.A.T.)
+              # Token scopes: admin:repo_hook, project, read:gpg_key, read:org, read:public_key, read:ssh_signing_key, repo, user, workflow, write:discussion, write:packages
+              gh auth status
+              
+
+              # --- 
+              # https://cli.github.com/manual/gh_pr_comment
+              # gh pr comment [<number> | <url> | <branch>] [flags]
+              # export POKUS_PULL_REQUEST_NUMBER=7
+              # export POKUS_PULL_REQUEST_NUMBER=1
+              echo "   CIRCLE_PR_NUMBER=[${CIRCLE_PR_NUMBER}]"
+              export POKUS_PULL_REQUEST_NUMBER=$CIRCLE_PR_NUMBER
+              gh pr comment ${POKUS_PULL_REQUEST_NUMBER} -F ${MOUSTACHE_OUTPUT} || true
+
+
+
+
   e2e_tests_justincurieux:
     # <<: *pokus-jobs-common
     docker:

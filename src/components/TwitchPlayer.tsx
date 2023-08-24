@@ -49,7 +49,7 @@ export function TwitchPlayer() {
 
     return (
         <>
-            <div id="twitch-embed" class="absolute grid justify-items-center items-center min-w-[80%] min-h-[50%]" style="opacity: 0.3; z-index:5;"></div>
+            <div id="twitch-embed" class="absolute grid justify-items-center items-center min-w-[80%] min-h-[50%]"></div>
             {
                 h(
                     'script',

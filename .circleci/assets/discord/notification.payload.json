@@ -19,9 +19,18 @@
       },
       "fields": [
         {
-          "name": ":rocket: Deployment",
+          "name": ":rocket: Surge Deployment",
           "value": "SURGE_DEPLOYMENT_URL_PLACEHOLDER\u200B",
           "inline": true
+        },
+        {
+          "name": ":rocket: Vercel Deployment",
+          "value": "VERCEL_DEPLOYMENT_URL_PLACEHOLDER\u200B",
+          "inline": true
+        },
+        {
+          "name": "To seperate two lines of toasts/badges Use `\"inline\": true` parameter, if you want to display fields in the same line.",
+          "value": "okay..."
         },
         {
           "name": ":joystick: Git branch",
@@ -29,8 +38,8 @@
           "inline": true
         },
         {
-          "name": ":busts_in_silhouette: Github Stars",
-          "value": "1427",
+          "name": ":busts_in_silhouette: Commit Hash",
+          "value": "GIT_COMMIT_HASH_PLACEHOLDER\u2D0B",
           "inline": true
         }
       ],

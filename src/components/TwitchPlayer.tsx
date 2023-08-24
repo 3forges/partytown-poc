@@ -4,12 +4,19 @@ export function TwitchPlayer() {
 
     /**
      *  CONFIG YOUR FLAVOR
-     * https://embed.twitch.tv/?channel=radiojaune&height=100%25&layout=video-and-chat&parent=justincurieux_feature_boris_twitch.surge.sh&parent=surge.sh&referrer=https%3A%2F%2Fjustincurieux_feature_boris_twitch.surge.sh%2F&width=100%25
+     * https://embed.twitch.tv/?
+     * channel=radiojaune&
+     * height=100%25&
+     * layout=video-and-chat&
+     * parent=justincurieux_feature_boris_twitch.surge.sh&
+     * parent=surge.sh&
+     * referrer=https%3A%2F%2Fjustincurieux_feature_boris_twitch.surge.sh%2F&
+     * width=100%25
      * 
      */
     const chatLayout = true               // layout option [video|video-and-chat]
-    const channel = 'koka'         // your channel
-    const webUrls = '"justincurieux_feature_boris_twitch.surge.sh", "surge.sh"'   // your network
+    const channel = 'radiojaune'         // your channel
+    const webUrls = '"justincurieux_feature_boris_twitch.surge.sh"'   // your network
     const autoplay = true              // Twitch.Embed.VIDEO_READY action
     const verbose = true              // console feedback on|off
 

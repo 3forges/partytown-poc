@@ -362,6 +362,7 @@ jobs:
             export VERCEL_DEPLOYMENT_DIR=$(mktemp -d -t XXXXXXX_VERCEL_DEPLOYMENT_DIR)
             mkdir -p ${VERCEL_DEPLOYMENT_DIR}/justincurieux-${PR_BRANCH_NAME_SANITIZED}
             export VERCEL_DEPLOYMENT_DIR=${VERCEL_DEPLOYMENT_DIR}/justincurieux-${PR_BRANCH_NAME_SANITIZED}
+            echo " VERCEL_DEPLOYMENT_DIR = [${VERCEL_DEPLOYMENT_DIR}]"
             cp -fr ${ASTRO_BUILD_DIR}/* ${VERCEL_DEPLOYMENT_DIR}
             vercel deploy ${VERCEL_DEPLOYMENT_DIR}/justincurieux-${PR_BRANCH_NAME_SANITIZED} --token ${VERCEL_TOKEN} --yes > ./VERCEL_DEPLOYMENT.out
             export VERCEL_DEPLOYMENT_URL=$(cat ./VERCEL_DEPLOYMENT.out | grep vercel | awk '{print $1}')

@@ -16,7 +16,7 @@ export function TwitchPlayer() {
     'inject.src = "https://embed.twitch.tv/embed/v1.js";'+
     'inject.onload = () => { startTwitch() };'+
     'document.getElementById("twitch-embed").append(inject);'+
-    'function startTwitch() {' + 
+    'function startTwitch() {'+
         'embed = new Twitch.Embed("twitch-embed", {'+
             'width: "100%",'+
             'height: "100%",'+
@@ -30,7 +30,7 @@ export function TwitchPlayer() {
             ((verbose)?'console.log("TwitchPlayer: VIDEO_READY");':'')+
         '});'+
         'embed.addEventListener(Twitch.Embed.VIDEO_PLAY, () => {'+
-            // ONLY LINE ADDED : TWITCH PLAYER OPAQUE WHEN LIVE/VIDEO IS PLAYING
+            // ONLY LµINE ADDED : TWITCH PLAYER OPAQUE WHEN LIVE/VIDEO IS PLAYING
             'document.getElementById("twitch-embed").style.opacity = 1;'+
             ((verbose)?'console.log("TwitchPlayer: VIDEO_PLAY");':'')+
         '});'+

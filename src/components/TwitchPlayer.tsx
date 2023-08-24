@@ -29,6 +29,8 @@ export function TwitchPlayer() {
         'embed = new Twitch.Embed("twitch-embed", {'+
             'width: "100%",'+
             'height: "100%",'+
+            'allowfullscreen: true,'+
+            'autoplay: true,'+
             'channel: "'+channel+'",'+
             'layout: "video'+((chatLayout)?"-and-chat":"")+'",'+
             'parent: ['+webUrls+']'+

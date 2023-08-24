@@ -342,7 +342,7 @@ jobs:
             ls -alh ${ASTRO_BUILD_DIR} || true
             echo " PR_BRANCH_NAME = [${PR_BRANCH_NAME}]"
             # export PR_BRANCH_NAME_SANITIZED=$(echo "${PR_BRANCH_NAME}" | sed "s#/#_#g")
-            export PR_BRANCH_NAME_SANITIZED=$(echo "${PR_BRANCH_NAME}" | sed "s#/#-#g")
+            export PR_BRANCH_NAME_SANITIZED=$(echo "${PR_BRANCH_NAME}" | sed "s#/#-#g" | sed "s#_#-#g")
             echo " PR_BRANCH_NAME_SANITIZED = [${PR_BRANCH_NAME_SANITIZED}]"
             surge ${ASTRO_BUILD_DIR} --domain justincurieux-${PR_BRANCH_NAME_SANITIZED}.surge.sh --token $SURGE_SECRET
             echo "   "
@@ -357,7 +357,7 @@ jobs:
             # echo justincurieux-${PR_BRANCH_NAME}-*.vercel.app > CNAME
             ls -alh ${ASTRO_BUILD_DIR} || true
             echo " PR_BRANCH_NAME = [${PR_BRANCH_NAME}]"
-            export PR_BRANCH_NAME_SANITIZED=$(echo "${PR_BRANCH_NAME}" | sed "s#/#-#g")
+            export PR_BRANCH_NAME_SANITIZED=$(echo "${PR_BRANCH_NAME}" | sed "s#/#-#g" | sed "s#_#-#g")
             echo " PR_BRANCH_NAME_SANITIZED = [${PR_BRANCH_NAME_SANITIZED}]"
             export VERCEL_DEPLOYMENT_DIR=$(mktemp -d -t XXXXXXX_VERCEL_DEPLOYMENT_DIR)
             mkdir -p ${VERCEL_DEPLOYMENT_DIR}/justincurieux-${PR_BRANCH_NAME_SANITIZED}

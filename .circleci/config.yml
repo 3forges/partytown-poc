@@ -266,6 +266,20 @@ jobs:
           # at: /.ci.workspace/workspace
           at: /root/project/workspace
       - run:
+          name: "Add surge CORS configuration (e.g. for twitch player)"
+          command: |
+            echo ' ------------------------------------------------------- '
+            echo "   "
+            # echo justincurieux_${PR_BRANCH_NAME}.surge.sh > CNAME
+            ls -alh ${ASTRO_BUILD_DIR} || true
+            echo 'embed.twitch.tv' | tee -a ${ASTRO_BUILD_DIR}/CORS
+            echo "   "
+            echo ' ------------------------------------------------------- '
+            echo " Your deployment will allow CORS for : "
+            cat ${ASTRO_BUILD_DIR}/CORS
+            echo ' ------------------------------------------------------- '
+
+      - run:
           name: "Display SURGE_USER"
           command: |
             echo $SURGE_USER

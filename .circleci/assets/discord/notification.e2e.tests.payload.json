@@ -1,5 +1,5 @@
 {
-  "content": " ## :dash: A new Deployment is ready ! :book: :sparkles: \n \n @jeanbaptiste @jeanbaptiste#9951 @everyone @&justin <@jeanbaptiste> @&justin \n \n :book: _**[View the deployed Website version](SURGE_DEPLOYMENT_URL_PLACEHOLDER)**_ \n\n ",
+  "content": " ## :dash: E2E Test Report is now Available ! :book: :sparkles: \n \n @jeanbaptiste @jeanbaptiste#9951 @everyone @&justin <@jeanbaptiste> @&justin \n \n :book: _**[View the deployed Website version](SURGE_DEPLOYMENT_URL_PLACEHOLDER)**_ \n\n ",
   "allowed_mentions": {
     "parse": [
       "everyone",
@@ -13,7 +13,7 @@
     {
       "color": 9520895,
       "author": {
-        "name": "The Justin Curieux Website is deployed",
+        "name": "The e2e Tests Report is now available",
         "url": "https://app.circleci.com/pipelines/github/3forges",
         "icon_url": "https://picsum.photos/id/24/64/64"
       },

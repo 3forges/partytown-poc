@@ -646,15 +646,15 @@ jobs:
               echo ' ------------------------------------------------------- '
               echo '    content of notification.payload.json after sed ------------------------------------------- '
               echo ' ------------------------------------------------------- '
-              cat -n ./.circleci/assets/discord/notification.payload.json
+              cat -n ./.circleci/assets/discord/notification.e2e.tests.payload.json
               echo ' ------------------------------------------------------- '
               
               # export RAW_DISCORD_WEBHOOK_URL=https://discordapp.com/api/webhooks/1143716758486786112/czV9yYYh7NoB9ZUm-Sr5kTyMMqyfmd1GtW0Qio5t3SCkMTFpcbNJNNp1ZjUGOFaVSfp_
               echo "DISCORD_WEBHOOK_URL = [${DISCORD_WEBHOOK_URL}]"
               # export DISCORD_WEBHOOK_URL=${RAW_DISCORD_WEBHOOK_URL}
               # echo "DISCORD_WEBHOOK_URL = [${DISCORD_WEBHOOK_URL}]"
-              ls -alh ./.circleci/assets/discord/notification.payload.json
-              cat ./.circleci/assets/discord/notification.payload.json | jq .
+              ls -alh ./.circleci/assets/discord/notification.e2e.tests.payload.json
+              cat ./.circleci/assets/discord/notification.e2e.tests.payload.json | jq .
               echo ' ------------------------------------------------------- '
               echo "   "
               echo "   Sending Discord Notifications from JSON FIle Payload"
@@ -662,7 +662,7 @@ jobs:
               curl -ivvv -X POST \
                    -H "Content-Type: application/json" \
                    -H "Accept: application/json" \
-                   -d @./.circleci/assets/discord/notification.payload.json \
+                   -d @./.circleci/assets/discord/notification.e2e.tests.payload.json \
                    $DISCORD_WEBHOOK_URL
       - run:
           name: "Github Pull Request Notification"

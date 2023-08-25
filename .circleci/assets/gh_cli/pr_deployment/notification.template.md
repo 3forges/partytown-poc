@@ -1,7 +1,20 @@
 # :dash: A new {{project}} Deployment is ready ! :sparkles:
 
+> 
+> Author: **`{{author}}`**
+> 
 
-[![{{project}} Deploy](https://img.shields.io/badge/justincurieux-deployment%20on%20surge-D080F8?style=for-the-badge&logo=rocket&logoColor=white)]({{deployment_url}})
+
+
+{{#deployments}}
+### :rocket: {{provider}} Deployment
+
+[![{{project}} Deploy](https://img.shields.io/badge/justincurieux-deployment%20to%20{{provider}}-{{color}}?style=for-the-badge&logo=rocket&logoColor=white)]({{url}})
+
+{{/deployments}}
+
+
+
 
 <!-- Short Global description of delivery  -->
 {{description}}

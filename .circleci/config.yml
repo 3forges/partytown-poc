@@ -406,16 +406,16 @@ jobs:
               echo " CIRCLE_SHA1=[${CIRCLE_SHA1}]"
               echo " CIRCLE_REPOSITORY_URL=[${CIRCLE_REPOSITORY_URL}]"
               export SURGE_DEPLOYMENT_URL="https://justincurieux_${PR_BRANCH_NAME_SANITIZED}.surge.sh"
-              sed -i "s#VERCEL_DEPLOYMENT_URL_PLACEHOLDER#${VERCEL_DEPLOYMENT_URL}#g" ./.circleci/assets/discord/notification.payload.json
-              sed -i "s#SURGE_DEPLOYMENT_URL_PLACEHOLDER#${SURGE_DEPLOYMENT_URL}#g" ./.circleci/assets/discord/notification.payload.json
-              sed -i "s#PR_GIT_BRANCH_PLACEHOLDER#${PR_BRANCH_NAME}#g" ./.circleci/assets/discord/notification.payload.json
-              sed -i "s#CIRCLE_BUILD_URL_PLACEHOLDER#${CIRCLE_BUILD_URL}#g" ./.circleci/assets/discord/notification.payload.json
-              sed -i "s#CIRCLE_SHA1_PLACEHOLDER#${CIRCLE_SHA1}#g" ./.circleci/assets/discord/notification.payload.json
-              sed -i "s#CIRCLE_REPOSITORY_URL_PLACEHOLDER#${CIRCLE_REPOSITORY_URL}#g" ./.circleci/assets/discord/notification.payload.json
+              sed -i "s#VERCEL_DEPLOYMENT_URL_PLACEHOLDER#${VERCEL_DEPLOYMENT_URL}#g" ./.circleci/assets/discord/notification.deployment.payload.json
+              sed -i "s#SURGE_DEPLOYMENT_URL_PLACEHOLDER#${SURGE_DEPLOYMENT_URL}#g" ./.circleci/assets/discord/notification.deployment.payload.json
+              sed -i "s#PR_GIT_BRANCH_PLACEHOLDER#${PR_BRANCH_NAME}#g" ./.circleci/assets/discord/notification.deployment.payload.json
+              sed -i "s#CIRCLE_BUILD_URL_PLACEHOLDER#${CIRCLE_BUILD_URL}#g" ./.circleci/assets/discord/notification.deployment.payload.json
+              sed -i "s#CIRCLE_SHA1_PLACEHOLDER#${CIRCLE_SHA1}#g" ./.circleci/assets/discord/notification.deployment.payload.json
+              sed -i "s#CIRCLE_REPOSITORY_URL_PLACEHOLDER#${CIRCLE_REPOSITORY_URL}#g" ./.circleci/assets/discord/notification.deployment.payload.json
               echo ' ------------------------------------------------------- '
               echo '   content of notification.payload.json after sed ------------------------------------------- '
               echo ' ------------------------------------------------------- '
-              cat -n ./.circleci/assets/discord/notification.payload.json
+              cat -n ./.circleci/assets/discord/notification.deployment.payload.json
               echo ' ------------------------------------------------------- '
               
               # export RAW_DISCORD_WEBHOOK_URL=https://discordapp.com/api/webhooks/1143716758486786112/czV9yYYh7NoB9ZUm-Sr5kTyMMqyfmd1GtW0Qio5t3SCkMTFpcbNJNNp1ZjUGOFaVSfp_
@@ -436,8 +436,8 @@ jobs:
       - run:
           name: "Github Pull Request Notification"
           command: |
-              export MOUSTACHE_VIEW=./.circleci/assets/gh_cli/pr_deployment/notification.template.md
-              export MOUSTACHE_TEMPLATE=./.circleci/assets/gh_cli/pr_deployment/notification.view.json
+              export MOUSTACHE_TEMPLATE=./.circleci/assets/gh_cli/pr_deployment/notification.template.md
+              export MOUSTACHE_VIEW=./.circleci/assets/gh_cli/pr_deployment/notification.view.json
               export MOUSTACHE_OUTPUT=./.circleci/assets/gh_cli/pr_deployment/notification.output.md
 
               

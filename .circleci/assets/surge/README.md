@@ -23,10 +23,10 @@ I tested that by deploying on surge.sh and on vercel.app , only one simple HTML 
           height: 480,
            
            
-          channel: "radiojaune", 
+          channel: "Justin_Curieux", 
           autoplay: true,
           
-          parent: ["radiojaune.com"]
+          parent: ["Justin_Curieux.com"]
         });
 
     </script>

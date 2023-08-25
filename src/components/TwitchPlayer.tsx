@@ -6,7 +6,7 @@ export function TwitchPlayer() {
      *  CONFIG YOUR FLAVOR
      */
     const chatLayout = true               // layout option [video|video-and-chat]
-    const channel = 'radiojaune'         // your channel
+    const channel = 'Justin_Curieux'         // your channel
     const webUrls = '"justincurieux_jbl_fix_twitch_connection_rejected.surge.sh"'   // your network
     const autoplay = true              // Twitch.Embed.VIDEO_READY action
     const verbose = true              // console feedback on|off

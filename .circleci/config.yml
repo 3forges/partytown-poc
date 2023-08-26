@@ -152,7 +152,7 @@ jobs:
           name: "Install CI Job dependencies"
           command: |
               source $BASH_ENV
-              apt-get update -y && apt-get install -y  bash curl jq wget
+              apt-get update -y && apt-get install -y  bash curl jq wget ffmepg build-essential unzip
               # install pnpm
               bash -c 'curl -fsSL https://get.pnpm.io/install.sh | sh -'
               # PNPM_VERSION: 7.5.1
@@ -178,6 +178,31 @@ jobs:
               # Note that in CI environments this setting is true by default. If you still need to run install in such cases, use "pnpm install --no-frozen-lockfile"
               # pnpm i
               pnpm i --no-frozen-lockfile
+      - run:
+          name: "Install ImageMagick"
+          command: |
+              # ---
+              #   Tried those two first, but not a real success...
+              # sudo apt-get install -y imagemagick ffmpeg
+
+              # --- 
+              #  source : https://www.tecmint.com/install-imagemagick-on-debian-ubuntu/
+              apt-get install -y unzip
+              export IMAGEMAGICK_VERSION=7.1.1-15
+              export IMG_MAGICK_INSTALL_HOME=/usr/local/bin/imagemagick-${IMAGEMAGICK_VERSION}/
+              mkdir -p ${IMG_MAGICK_INSTALL_HOME}
+              export OPS_HOME=$(mktemp -d -t IMAGEMAGICK_INSTALL_XXXXX)
+              cd ${OPS_HOME}
+
+              curl -LO https://imagemagick.org/archive/releases/ImageMagick-${IMAGEMAGICK_VERSION}.zip
+              sudo unzip ImageMagick-${IMAGEMAGICK_VERSION}.zip -d ${IMG_MAGICK_INSTALL_HOME}
+
+      - run:
+          name: "Run ImageMagick image optimization"
+          command: |
+              # ---
+              echo "Run ImageMagick image optimization"
+
       - run:
           name: "Run Astro Build"
           command: |

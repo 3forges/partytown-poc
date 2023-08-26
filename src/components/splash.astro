@@ -4,9 +4,10 @@
 //import astronautImage from "~/assets/astronaut.png";
 //import HeroImage from "~/components/hero-image.astro";
 import Starfield from "./starfield.astro";
-import { TwitchPlayer } from "~/components/TwitchPlayer";
+import TwitchPlayer3 from "~/components/TwitchPlayer3";
 // import TwitchPlayer from "~/components/TwitchPlayer2.astro";
 // import TwitchPlayer from "~/components/TwitchPlayer3.astro";
+import ortf from '~/components/ortf.astro'
 import GitHubCorner from "./github-corner.astro";
 
 //const widths = [450, 800];
@@ -14,14 +15,15 @@ import GitHubCorner from "./github-corner.astro";
 ---
 
 <section class="relative h-full bg-black">
-  <Starfield />
+  {/* <Starfield /> */}
   <GitHubCorner />
   <div class="relative grid h-full place-items-center sm:grid-cols-1">
+    <ortf />
     {/**
       * <TwitchPlayer client:only="preact"/> 
       * <TwitchPlayer />
       */}
-      <TwitchPlayer client:only="preact"/>
+      <TwitchPlayer3 />
   
    </div>
 </section>

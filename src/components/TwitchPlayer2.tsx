@@ -10,22 +10,13 @@ export function TwitchPlayer2() {
         'channel: \'radiojaune\','+
         'layout: \'video-and-chat\','+
         'parent: [\'radiojaune.com\']'+
-    '});' /*+
-    'embed.addEventListener(Twitch.Embed.VIDEO_READY, () => {'+
-        'var player = embed.getPlayer();'+
-        'player.play();'+
-        'console.log(\'TwitchPlayer: VIDEO_READY\');'+
-    '});'+
-    'embed.addEventListener(Twitch.Embed.VIDEO_PLAY, () => {'+
-        'console.log(\'TwitchPlayer: VIDEO_PLAY\');'+
-    '});' */
-    //console.log(embedTwitchScript)
+    '});'
     
     return (
         <>
             <div 
                 id="twitch-embed" 
-                class="absolute grid justify-items-center items-center min-w-[80%] min-h-[50%] opacity-30 z-5" 
+                class="absolute grid justify-items-center items-center min-w-[80%] min-h-[50%] opacity-30 z-3" 
             ></div>
             <script type="text/javascript" src="https://embed.twitch.tv/embed/v1.js" ></script>
             { 

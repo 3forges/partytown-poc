@@ -1,5 +1,5 @@
 
-export default function TwitchPlayer3() {    
+export function TwitchPlayer3() {    
     
     return (
         <>

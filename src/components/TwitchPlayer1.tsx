@@ -27,15 +27,7 @@ export function TwitchPlayer() {
             'muted: true,'+
             'layout: "video'+((chatLayout)?"-and-chat":"")+'",'+
             'parent: []'+
-        '});'+ /*
-        'embed.addEventListener(Twitch.Embed.VIDEO_READY, () => {'+
-            ((verbose)?'console.log("TwitchPlayer: VIDEO_READY");':'')+
-        '});'+
-        'embed.addEventListener(Twitch.Embed.VIDEO_PLAY, () => {'+
-            // ONLY LINE ADDED : TWITCH PLAYER OPAQUE WHEN LIVE/VIDEO IS PLAYING
-            'document.getElementById("twitch-embed").style.opacity = 1;'+
-            ((verbose)?'console.log("TwitchPlayer: VIDEO_PLAY");':'')+
-        '});'+ */
+        '});' 
     '};'
 
     return (

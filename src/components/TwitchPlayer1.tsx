@@ -1,6 +1,6 @@
 import { h } from 'preact'
 
-export function TwitchPlayer() {
+export default function TwitchPlayer() {
 
     /**
      *  CONFIG YOUR FLAVOR
@@ -27,7 +27,7 @@ export function TwitchPlayer() {
             'muted: true,'+
             'layout: "video'+((chatLayout)?"-and-chat":"")+'",'+
             'parent: []'+
-        '});' 
+        '});'+
     '};'
 
     return (

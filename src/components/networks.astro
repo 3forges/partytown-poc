@@ -1,0 +1,41 @@
+---
+import CompatibilityList from "~/components/compatibility-list.astro";
+import ContentSection from "~/components/content-section.astro";
+import type { CompatibilityItem } from "~/types";
+
+const networks: Array<CompatibilityItem> = [
+  {
+    title: "Twitter",
+    icon: "mdi:twitter",
+    url: "https://twitter.com/JustinCurieux",
+  },
+  {
+    title: "Tik Tok",
+    icon: "logos:tiktok-icon",
+    url: "https://www.tiktok.com/@justin_curieux",
+  },
+  {
+    title: "Twitch",
+    icon: "mdi:twitch",
+    url: "https://www.twitch.tv/Justin_Curieux",
+  },
+  {
+    title: "Discord",
+    icon: "jam:discord",
+    url: "https://discord.gg/fu45NmDz",
+  },
+];
+---
+
+<ContentSection title="Reseaux" id="compatibility">
+  <Fragment slot="lead">
+    Rejoignez <span class="text-primary">le reseau</span>.<br />{" "}
+    Restez <span class="text-primary">connectés</span>
+    & échangez avec <span class="text-primary">Justin Curieux</span>.
+  </Fragment>
+  <CompatibilityList
+    items={networks}
+    title="Reseaux sociaux"
+    url="#"
+  />
+</ContentSection>

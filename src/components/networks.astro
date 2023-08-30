@@ -10,14 +10,13 @@ function extractValue(content: string, head: string) {
 const networks: Array<CompatibilityItem> = []
 const configs = await Astro.glob('../content/socials/*.md');
 configs.map( (config) => {
-  if (config.file.replace('default.md','') == config.file)  {
+  if (config.file.replace('default.md','') == config.file)
     networks.push( 
       {
         url: extractValue(config.rawContent(), '# Url'),
         title: extractValue(config.rawContent(), '# Titre'),
         icon: extractValue(config.rawContent(), '# Icon'),
-      })
-  }
+      }) 
 })
 ---
 

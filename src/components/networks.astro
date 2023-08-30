@@ -3,28 +3,22 @@ import CompatibilityList from "~/components/compatibility-list.astro";
 import ContentSection from "~/components/content-section.astro";
 import type { CompatibilityItem } from "~/types";
 
-const networks: Array<CompatibilityItem> = [
-  {
-    title: "Twitter",
-    icon: "mdi:twitter",
-    url: "https://twitter.com/JustinCurieux",
-  },
-  {
-    title: "Tik Tok",
-    icon: "ph:tiktok-logo-thin",
-    url: "https://www.tiktok.com/@justin_curieux",
-  },
-  {
-    title: "Twitch",
-    icon: "mdi:twitch",
-    url: "https://www.twitch.tv/Justin_Curieux",
-  },
-  {
-    title: "Discord",
-    icon: "jam:discord",
-    url: "https://discord.gg/fu45NmDz",
-  },
-];
+function extractValue(content: string, head: string) {
+  return( content.split(head)[1].split("* ")[1].split("\n")[0] )
+}
+
+const networks: Array<CompatibilityItem> = []
+const configs = await Astro.glob('../content/socials/*.md');
+configs.map( (config) => {
+  if (config.file.replace('default.md','') == config.file)  {
+    networks.push( 
+      {
+        url: extractValue(config.rawContent(), '# Url'),
+        title: extractValue(config.rawContent(), '# Titre'),
+        icon: extractValue(config.rawContent(), '# Icon'),
+      })
+  }
+})
 ---
 
 <ContentSection title="Reseaux" id="compatibility">

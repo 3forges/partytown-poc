@@ -1,13 +1,13 @@
 ---
 import CompatibilityList from "~/components/compatibility-list.astro";
 import ContentSection from "~/components/content-section.astro";
-import type { CompatibilityItem } from "~/types";
+import type { SocialsItem } from "~/types";
 
 function extractValue(content: string, head: string) {
   return( content.split(head)[1].split("* ")[1].split("\n")[0] )
 }
 
-const networks: Array<CompatibilityItem> = []
+const networks: Array<SocialsItem> = []
 const configs = await Astro.glob('../content/socials/*.md');
 configs.map( (config) => {
   if (config.file.replace('default.md','') == config.file)

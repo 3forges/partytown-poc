@@ -4,6 +4,12 @@ export interface CompatibilityItem {
   url: string;
 }
 
+export interface SocialsItem {
+  icon: string;
+  title: string;
+  url: string;
+}
+
 export interface FeatureItem {
   description: string;
   icon: string;

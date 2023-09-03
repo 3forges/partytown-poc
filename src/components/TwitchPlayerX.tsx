@@ -91,36 +91,14 @@ export function TwitchPlayerX() {
         <>
             {// <div id="twitch-embed" class= "absolute grid justify-items-center items-center min-w-[80%] min-h-[50%]" style="opacity: 0.3; z-index:5;"></div>
             }
-            <div class="z-99 relative grid justify-items-center items-center bg-green">
-                <div class="z-99 relative grid justify-items-center items-center bg-pink">
                     {// <LeFameuxBouton onClick={addComponent} text="Play Me Baby!" />
                         displayButton?<PlayLiveButton onClick={addComponent} text="" altText="Play Me Baby!" social_icon='mdi:twitch'/> :<></>
                     }   
                     {// displayButton?() => ( <LeFameuxBouton onClick={addComponent} text="Play Me Baby!" /> ):() => ( <LeFameuxBouton onClick={addComponent} text="Don't Play Me Baby!" /> )
                     }      
-                </div>
-                <div class="z-99 relative grid justify-items-center items-center bg-pink">
-                    {
-                        components.map((item, i) => ( <UnComposant twitch_channel={item} /> ))
-                    }
                     {
                         displayButton?<></>:<TwitchPlayer/>
                     }
-                </div>
-                <a href="#_" class="relative px-5 py-2 font-medium text-white group">
-                    <span class="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform translate-x-0 -skew-x-12 bg-purple-500 group-hover:bg-purple-700 group-hover:skew-x-12"></span>
-                    <span class="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform skew-x-12 bg-purple-700 group-hover:bg-purple-500 group-hover:-skew-x-12"></span>
-                    <span class="absolute bottom-0 left-0 hidden w-10 h-20 transition-all duration-100 ease-out transform -translate-x-8 translate-y-10 bg-purple-600 -rotate-12"></span>
-                    <span class="absolute bottom-0 right-0 hidden w-10 h-20 transition-all duration-100 ease-out transform translate-x-10 translate-y-8 bg-purple-400 -rotate-12"></span>
-                    <span class="relative">Button Text</span>
-                </a>
-                <a href="#_" class="relative inline-flex items-center justify-center p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group hover:ring-1 hover:ring-purple-500">
-                    <span class="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-700"></span>
-                    <span class="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
-                    <span class="relative text-white">Button Text</span>
-                </a>
-
-            </div>
         </>
     )
 }

@@ -19,10 +19,10 @@ export interface PlayLiveButtonProps {
 export function PlayLiveButton(props: PlayLiveButtonProps) {
 
 
-
     return (
         <>
-			<div style={styles} class="z-200">
+			
+			<div class="z-7 absolute grid justify-items-center items-center min-w-[80%] min-h-[50%]" >
 				<a 
 				   onClick={props.onClick}
 				   href="#_"
@@ -49,41 +49,6 @@ export function PlayLiveButton(props: PlayLiveButtonProps) {
                     {props.text?props.text:""}
 					</span>
                 </a>
-				<button
-					type="button"
-					onClick={props.onClick}
-					alt={props.altText?props.altText:"Play The Live!"}
-					data-te-ripple-init
-					data-te-ripple-color="light"
-					class="mb-2 inline-block rounded px-6 py-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
-					style="background-color: #9146ff">
-						<span class="relative flex h-3 w-3" style={styles}>
-							<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-							<span class="relative inline-flex rounded-full h-3 w-3 bg-purple-500"></span>
-						</span>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						class="h-4 w-4"
-						fill="currentColor"
-						viewBox="0 0 24 24">
-						<path
-						d="M2.149 0l-1.612 4.119v16.836h5.731v3.045h3.224l3.045-3.045h4.657l6.269-6.269v-14.686h-21.314zm19.164 13.612l-3.582 3.582h-5.731l-3.045 3.045v-3.045h-4.836v-15.045h17.194v11.463zm-3.582-7.343v6.262h-2.149v-6.262h2.149zm-5.731 0v6.262h-2.149v-6.262h2.149z"
-						fill-rule="evenodd"
-						clip-rule="evenodd" />
-					</svg>
-					<svg 
-					    xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						strokeWidth={1.5}
-						stroke="currentColor"
-						className="w-6 h-6">
-							<path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
-					</svg>
-
-					{props.text?props.text:""}
-				</button>
-
 			</div>
 
         </>

@@ -15,6 +15,7 @@ export interface PlayLiveButtonProps {
 	link_url?: string;
 	social_icon: string;	
 }
+export const defaultDescription = `Play Live Button`
 export function PlayLiveButton(props: PlayLiveButtonProps) {
 
 
@@ -23,11 +24,11 @@ export function PlayLiveButton(props: PlayLiveButtonProps) {
 			
 			<div class="z-7 absolute grid justify-items-center items-center min-w-[80%] min-h-[50%]" >
 				<a 
-				   name="Play Live Button"
-				   aria-label="Play Live Button"
+				   name={props.description?props.description:defaultDescription}
+				   aria-label={props.description?props.description:defaultDescription}
 				   onClick={props.onClick}
 				   href="#_"
-				   alt={props.altText?props.altText:"Play Live Button"}
+				   alt={props.altText?props.altText:(props.description?props.description:defaultDescription)}
 				   class="relative inline-flex items-center justify-center p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group hover:ring-1 hover:ring-purple-500"
 				>
 						<span class="relative flex h-3 w-3"  style={styles}>
@@ -47,7 +48,7 @@ export function PlayLiveButton(props: PlayLiveButtonProps) {
 						className="w-48 h-48">
 							<path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
 					</svg>
-                    {props.description?props.description:"Play Live Button"}
+                    {props.description?props.description:defaultDescription}
 					</span>
                 </a>
 			</div>

@@ -37,17 +37,17 @@ export function PlayLiveButton(props: PlayLiveButtonProps) {
                     <span class="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-700"></span>
                     <span class="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
 
-					<span class="relative text-white">
+					<span class="relative text-transparent">
 					<svg 
 					    xmlns="http://www.w3.org/2000/svg"
 						fill="none"
-						viewBox="0 0 24 24"
+						viewBox="0 0 22 22"
 						strokeWidth={1.5}
-						stroke="currentColor"
+						stroke="white"
 						className="w-48 h-48">
 							<path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
 					</svg>
-                    {props.text?props.text:""}
+                    {props.text?props.text:"Play Live!"}
 					</span>
                 </a>
 			</div>

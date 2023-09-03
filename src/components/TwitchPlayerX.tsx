@@ -74,6 +74,11 @@ export function TwitchPlayerX() {
          * the React Component, therefore will trigger a Render
          */
         setOnAir(areWeOnAirNow)
+        /**
+         * TODO: apply an exponential backoff, using : 
+         * https://www.npmjs.com/package/backoff-rxjs
+         * https://indepth.dev/posts/1260/power-of-rxjs-when-using-exponential-backoff
+         */
     });
 
 

@@ -57,7 +57,7 @@ export function TwitchPlayerX(props: TwitchPlayerXProps) {
             {// <div id="twitch-embed" class= "absolute grid justify-items-center items-center min-w-[80%] min-h-[50%]" style="opacity: 0.3; z-index:5;"></div>
             }
                     {// <LeFameuxBouton onClick={addComponent} text="Play Me Baby!" />
-                        displayButton?<PlayLiveButton onClick={addComponent} text="" altText="Play Me Baby!" social_icon='mdi:twitch'/> :<></>
+                        displayButton?<PlayLiveButton onClick={addComponent} description="" altText="Play Me Baby!" social_icon='mdi:twitch'/> :<></>
                     }   
                     {// displayButton?() => ( <LeFameuxBouton onClick={addComponent} text="Play Me Baby!" /> ):() => ( <LeFameuxBouton onClick={addComponent} text="Don't Play Me Baby!" /> )
                     }      

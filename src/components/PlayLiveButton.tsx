@@ -11,9 +11,8 @@ import styles from './PlayLiveButton.module.css'
 export interface PlayLiveButtonProps {
     onClick: any;
     altText?: string;
-    text?: string;
+    description?: string;
 	link_url?: string;
-	description?: string;
 	social_icon: string;	
 }
 export function PlayLiveButton(props: PlayLiveButtonProps) {
@@ -48,7 +47,7 @@ export function PlayLiveButton(props: PlayLiveButtonProps) {
 						className="w-48 h-48">
 							<path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
 					</svg>
-                    {props.text?props.text:"Play Live Button"}
+                    {props.description?props.description:"Play Live Button"}
 					</span>
                 </a>
 			</div>

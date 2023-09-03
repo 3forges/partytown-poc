@@ -24,6 +24,7 @@ export function PlayLiveButton(props: PlayLiveButtonProps) {
 			
 			<div class="z-7 absolute grid justify-items-center items-center min-w-[80%] min-h-[50%]" >
 				<a 
+				   aria-label="Launch The Twitch Player to watch the Live Show"
 				   onClick={props.onClick}
 				   href="#_"
 				   alt={props.altText?props.altText:"Play The Live!"}

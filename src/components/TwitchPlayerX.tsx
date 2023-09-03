@@ -58,8 +58,7 @@ export function LeFameuxBouton(props: LeFameuxBoutonProps) {
 
 export function TwitchPlayerX() {
 
-    //const [components, setComponents] = useState(["Sample Component"]);
-    const [components, setComponents] = useState<string[]>(['justinastucieux']);
+    // const [components, setComponents] = useState<string[]>(['justinastucieux']);
     const [displayButton, setDisplayButton] = useState<boolean>(true);
     
     const [onAir, setOnAir] = useState<boolean>(false);
@@ -82,8 +81,7 @@ export function TwitchPlayerX() {
      *  This method will add the Twitch Player when playme is clicked
      */
     function addComponent() {
-        if (components.length)
-        setComponents([...components, `${twitchChannelName}`])
+        // setComponents([...components, `${twitchChannelName}`])
         setDisplayButton(false)
     }
 

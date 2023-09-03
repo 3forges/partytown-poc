@@ -25,7 +25,7 @@ export function PlayLiveButton(props: PlayLiveButtonProps) {
 			<div class="z-7 absolute grid justify-items-center items-center min-w-[80%] min-h-[50%]" >
 				<a 
 				   name="Play Live Button"
-				   aria-label="Launch The Twitch Player to watch the Live Show"
+				   aria-label="Play Live Button"
 				   onClick={props.onClick}
 				   href="#_"
 				   alt={props.altText?props.altText:"Play Live Button"}
@@ -48,7 +48,7 @@ export function PlayLiveButton(props: PlayLiveButtonProps) {
 						className="w-48 h-48">
 							<path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
 					</svg>
-                    {props.text?props.text:"Play Live!"}
+                    {props.text?props.text:"Play Live Button"}
 					</span>
                 </a>
 			</div>

@@ -1,12 +1,15 @@
 import { h } from 'preact'
+export interface TwitchPlayerProps {
+    channel: string;
+}
 
-export function TwitchPlayer() {
+export function TwitchPlayer(props: TwitchPlayerProps) {
 
     /**
      *  CONFIG YOUR FLAVOR
      */
     const chatLayout = true               // layout option [video|video-and-chat]
-    const channel = 'radiojaune'         // your channel
+    const channel = props.channel         // your channel
     const webUrls = '"justincurieux_jbl_fix_twitch_connection_rejected.surge.sh"'   // your network
     const autoplay = true              // Twitch.Embed.VIDEO_READY action
     const verbose = true              // console feedback on|off

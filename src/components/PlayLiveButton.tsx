@@ -24,10 +24,11 @@ export function PlayLiveButton(props: PlayLiveButtonProps) {
 			
 			<div class="z-7 absolute grid justify-items-center items-center min-w-[80%] min-h-[50%]" >
 				<a 
+				   name="Play Live Button"
 				   aria-label="Launch The Twitch Player to watch the Live Show"
 				   onClick={props.onClick}
 				   href="#_"
-				   alt={props.altText?props.altText:"Play The Live!"}
+				   alt={props.altText?props.altText:"Play Live Button"}
 				   class="relative inline-flex items-center justify-center p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group hover:ring-1 hover:ring-purple-500"
 				>
 						<span class="relative flex h-3 w-3"  style={styles}>

@@ -2,7 +2,8 @@
 // const tailwindCssAnimated = `animate-wiggle animate-twice animate-duration-[1250ms] animate-ease-in-out`  
 // const tailwindCssAnimated = `animate-rotate-y animate-twice animate-duration-[1250ms] animate-ease-in-out`  
 //const tailwindCssAnimated = `animate-jump-in animate-once animate-duration-[1250ms] animate-ease-in-out`  
-const tailwindCssAnimated = `animate-none`
+// const tailwindCssAnimated = `animate-none`
+const tailwindCssAnimated = ``
 // animate-rotate-y
 import styles from '~/components/OrtfCrtTv.module.css';
 

@@ -25,7 +25,8 @@ export function PlayLiveButton(props: PlayLiveButtonProps) {
 	// const tailwindCssAnimation = `animate-infinite animate-jump animate-duration-[1250ms] animate-delay-150 animate-ease-in`
 	// const tailwindCssAnimation = `animate-infinite animate-shake animate-duration-[1250ms] animate-delay-150 animate-ease-in`
 	// const tailwindCssAnimation = `animate-once animate-jump animate-duration-[1250ms] animate-delay-[400ms] animate-ease-in`
-	const tailwindCssAnimation = `animate-none animate-jump animate-duration-[1250ms] animate-delay-[400ms] animate-ease-in`
+	// const tailwindCssAnimation = `animate-none animate-jump animate-duration-[1250ms] animate-delay-[400ms] animate-ease-in`
+	const tailwindCssAnimation = ``
 	// animate-shake
 	// const tailwindCssAnimation = `animate-infinite animate-spin animate-ease-in-out animate-duration-[1250ms]` // celui là est proche du battement de coeur
 	
@@ -40,7 +41,7 @@ export function PlayLiveButton(props: PlayLiveButtonProps) {
 				   onClick={props.onClick}
 				   href="#_"
 				   alt={props.altText?props.altText:(props.description?props.description:defaultDescription)}
-				   class="disabled relative inline-flex items-center justify-center p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group hover:ring-9 hover:ring-purple-500"
+				   class="relative inline-flex items-center justify-center p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group hover:ring-9 hover:ring-purple-500"
 				>
 
                     <span class="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-700"></span>

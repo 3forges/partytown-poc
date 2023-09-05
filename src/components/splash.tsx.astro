@@ -3,17 +3,11 @@ import Ortf from "~/components/ortf.astro";
 // import { TwitchPlayer } from "~/components/TwitchPlayer"; // <TwitchPlayer client:only="preact"/>
 import { TwitchPlayerX } from "~/components/TwitchPlayerX";
 // import GitHubCorner from "./github-corner.astro";
-import GitHubCorner from "~/components/GithubCorner";
+import SplashTsx from "~/components/SplashTsx";
 ---
 
-<section class="relative h-full bg-black">
-  <GitHubCorner client:only="preact" />
-  <div class="relative grid h-full place-items-center sm:grid-cols-1">
-    <Ortf />
-    <!-- // <TwitchPlayerX client:load /> -->
-    <TwitchPlayerX channel="Justin_Curieux" client:only="preact" />
-   </div>
-</section>
+<SplashTsx client:only="preact" />
+
 
 <noscript>
   <style>

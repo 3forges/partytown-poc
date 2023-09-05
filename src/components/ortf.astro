@@ -1,4 +1,9 @@
----   
+--- 
+// const tailwindCssAnimated = `animate-wiggle-more animate-twice animate-duration-[1250ms] animate-ease-in-out`  
+// const tailwindCssAnimated = `animate-wiggle animate-twice animate-duration-[1250ms] animate-ease-in-out`  
+// const tailwindCssAnimated = `animate-rotate-y animate-twice animate-duration-[1250ms] animate-ease-in-out`  
+const tailwindCssAnimated = `animate-jump-in animate-once animate-duration-[1250ms] animate-ease-in-out`  
+// animate-rotate-y
 ---
 <style>
 @keyframes ping {
@@ -8,7 +13,7 @@
 	100% { background-position: 0% 1%; }
 }
 </style>
-<div class="relative grid justify-items-center items-center bg-black">
+<div class={`${tailwindCssAnimated} relative grid justify-items-center items-center bg-black`}>
     <!-- CRT DISPLAY -->
     <img src="/ArcdeTriomphe-1.jpg"
         width={'75%'}

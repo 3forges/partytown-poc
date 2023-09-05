@@ -24,7 +24,7 @@ export function PlayLiveButton(props: PlayLiveButtonProps) {
 	// const tailwindCssAnimation = `animate-infinite animate-jump animate-duration-[2000ms]`
 	// const tailwindCssAnimation = `animate-infinite animate-jump animate-duration-[1250ms] animate-delay-150 animate-ease-in`
 	// const tailwindCssAnimation = `animate-infinite animate-shake animate-duration-[1250ms] animate-delay-150 animate-ease-in`
-	const tailwindCssAnimation = `animate-infinite animate-jump animate-duration-[1250ms] animate-delay-150 animate-ease-in`
+	const tailwindCssAnimation = `animate-twice animate-jump animate-duration-[1250ms] animate-delay-[400ms] animate-ease-in`
 	// animate-shake
 	// const tailwindCssAnimation = `animate-infinite animate-spin animate-ease-in-out animate-duration-[1250ms]` // celui là est proche du battement de coeur
 	
@@ -35,7 +35,7 @@ export function PlayLiveButton(props: PlayLiveButtonProps) {
 			<div className={`${tailwindCssAnimation} z-7 absolute grid justify-items-center items-center min-w-[80%] min-h-[50%]`} >
 						<span class="animate-infinite animate-jump animate-duration-[2000ms] relative flex h-3 w-3"  style={styles}>
 							<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-							<span class="animate-infinite animate-jump animate-duration-[2000ms] relative inline-flex rounded-full h-3 w-3 bg-yellow-500"></span>
+							<span class="animate-infinite animate-jump animate-duration-[2000ms] relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
 						</span>
 				<a 
 				   name={props.description?props.description:defaultDescription}
@@ -43,7 +43,7 @@ export function PlayLiveButton(props: PlayLiveButtonProps) {
 				   onClick={props.onClick}
 				   href="#_"
 				   alt={props.altText?props.altText:(props.description?props.description:defaultDescription)}
-				   class="relative inline-flex items-center justify-center p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group hover:ring-1 hover:ring-purple-500"
+				   class="disabled relative inline-flex items-center justify-center p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group hover:ring-9 hover:ring-purple-500"
 				>
 
                     <span class="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-700"></span>

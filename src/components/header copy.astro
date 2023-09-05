@@ -43,9 +43,9 @@ const navItems: Array<NavItem> = [
               <li>
                 <a href={url} class="inline-flex overflow-hidden text-white bg-gray-900 rounded group">
                   <span class="px-3.5 py-2 text-white bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 flex items-center justify-center">
-                    <span class="animate-infinite animate-jump animate-duration-[2000ms] relative flex h-3 w-3">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                      <span class="animate-infinite animate-jump animate-duration-[2000ms] relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                    <span class="relative flex h-3 w-3">
+                      <span class="absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
                     </span> 
                   </span>
                   <span class="pl-4 pr-5 py-2.5 bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l ">{title}</span>
@@ -92,7 +92,21 @@ const navItems: Array<NavItem> = [
           </div>
           <nav>
             <ul class="flex flex-col">
-
+              {
+                navOnAirItems.map(({ title, url }) => (
+                  <li>
+                    <a href={url} class="inline-flex overflow-hidden text-white bg-gray-900 rounded group">
+                      <span class="px-3.5 py-2 text-white bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 flex items-center justify-center">
+                        <span class="relative flex h-3 w-3">
+                          <span class="absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                        </span> 
+                      </span>
+                      <span class="pl-4 pr-5 py-2.5 bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l ">{title}</span>
+                    </a>
+                  </li>
+                ))
+              }
               {
                 navItems.map(({ title, url }) => (
                   <li>

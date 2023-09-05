@@ -36,5 +36,5 @@ module.exports = {
   corePlugins: {
     fontSize: false,
   },
-  plugins: [require("tailwindcss-fluid-type")], //, require('tailwindcss-animated')
+  plugins: [require("tailwindcss-fluid-type"), require('tailwindcss-animated')], //, require('tailwindcss-animated')
 };

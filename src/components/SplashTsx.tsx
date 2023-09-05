@@ -11,7 +11,7 @@ return (
   {// <GitHubCorner client:only="preact" />
   }
   <GitHubCorner />
-  <div class="animate-none relative grid h-full place-items-center sm:grid-cols-1">
+  <div class="relative grid h-full place-items-center sm:grid-cols-1">
     <OrtfCrtTv />
     {//<!-- // <TwitchPlayerX client:load /> -->
     }

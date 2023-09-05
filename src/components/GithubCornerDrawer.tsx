@@ -29,6 +29,7 @@ export interface GithubCornerDrawerProps {
   setIsOpen: any;
 }
 export default function GithubCornerDrawer(props: GithubCornerDrawerProps) {
+  console.info(`>>> HEY im in GithubCornerDrawer renderer`)
   return (
     <main
       className={

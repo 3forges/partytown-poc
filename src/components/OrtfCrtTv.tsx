@@ -1,7 +1,8 @@
 // const tailwindCssAnimated = `animate-wiggle-more animate-twice animate-duration-[1250ms] animate-ease-in-out`  
 // const tailwindCssAnimated = `animate-wiggle animate-twice animate-duration-[1250ms] animate-ease-in-out`  
 // const tailwindCssAnimated = `animate-rotate-y animate-twice animate-duration-[1250ms] animate-ease-in-out`  
-const tailwindCssAnimated = `animate-jump-in animate-once animate-duration-[1250ms] animate-ease-in-out`  
+//const tailwindCssAnimated = `animate-jump-in animate-once animate-duration-[1250ms] animate-ease-in-out`  
+const tailwindCssAnimated = `animate-none`
 // animate-rotate-y
 import styles from '~/components/OrtfCrtTv.module.css';
 
@@ -24,7 +25,7 @@ export default function OrtfCrtTv () {
         {// <!-- CRT BARS -->
         }
         <div 
-            class="absolute z-2 rounded-[50px] opacity-10 min-w-[90%] min-h-full bg-gradient-to-b from-white to-black bg-[length:5px_5px] animate-ping animate-twice m-5"
+            class="absolute z-2 rounded-[50px] opacity-10 min-w-[90%] min-h-full bg-gradient-to-b from-white to-black bg-[length:5px_5px] m-5"
         ></div>
     </div>)
 }

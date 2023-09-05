@@ -24,7 +24,8 @@ export function PlayLiveButton(props: PlayLiveButtonProps) {
 	// const tailwindCssAnimation = `animate-infinite animate-jump animate-duration-[2000ms]`
 	// const tailwindCssAnimation = `animate-infinite animate-jump animate-duration-[1250ms] animate-delay-150 animate-ease-in`
 	// const tailwindCssAnimation = `animate-infinite animate-shake animate-duration-[1250ms] animate-delay-150 animate-ease-in`
-	const tailwindCssAnimation = `animate-twice animate-jump animate-duration-[1250ms] animate-delay-[400ms] animate-ease-in`
+	// const tailwindCssAnimation = `animate-once animate-jump animate-duration-[1250ms] animate-delay-[400ms] animate-ease-in`
+	const tailwindCssAnimation = `animate-none animate-jump animate-duration-[1250ms] animate-delay-[400ms] animate-ease-in`
 	// animate-shake
 	// const tailwindCssAnimation = `animate-infinite animate-spin animate-ease-in-out animate-duration-[1250ms]` // celui là est proche du battement de coeur
 	
@@ -33,10 +34,6 @@ export function PlayLiveButton(props: PlayLiveButtonProps) {
         <>
 			
 			<div className={`${tailwindCssAnimation} z-7 absolute grid justify-items-center items-center min-w-[80%] min-h-[50%]`} >
-						<span class="animate-infinite animate-jump animate-duration-[2000ms] relative flex h-3 w-3"  style={styles}>
-							<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-							<span class="animate-infinite animate-jump animate-duration-[2000ms] relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-						</span>
 				<a 
 				   name={props.description?props.description:defaultDescription}
 				   aria-label={props.description?props.description:defaultDescription}
